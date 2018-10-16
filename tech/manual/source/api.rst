@@ -12,7 +12,7 @@ Cluster Commands & API Reference
 HTTP API
 ========
 
-introduction
+##TODO## Introduction 
 
 Index
 -----
@@ -31,9 +31,6 @@ Index
 
 * :ref:`/file/add`
 * :ref:`/file/get`
-* :ref:`/file/put`
-* :ref:`/file/rm`
-* :ref:`/file/stat`
 * :ref:`/file/ls`
 * :ref:`/files/chcid`
 * :ref:`/files/cp`
@@ -96,7 +93,6 @@ List the cluster servers with open connections.
      - no
      - Json string is following
 
-
 On success, the call to this endpoint will return with 200 and the following body:
 
 .. code-block:: json
@@ -149,7 +145,7 @@ On success, the call to this endpoint will return with 200.
 ===================
 /cluster/node/rm
 ===================
-Remove a node from the cluster the cluster.
+Remove a node from the cluster.
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -188,7 +184,7 @@ On success, the call to this endpoint will return with 200.
 =================
 /file/add
 =================
-Add a file or directory to Cluster.
+Add a file or directory to cluster.
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -286,74 +282,7 @@ Add a file or directory to Cluster.
    * - error
      - integer
      - yes
-     - error code.
-
-=================
-/file/put
-=================
-
-.. list-table:: Arguments
-   :widths: 15 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Description
-   * - Albatross
-     - 2.99
-     - On a stick!
-   * - Crunchy Frog
-     - 1.49
-     - If we took the bones out, it wouldn't be
-       crunchy, now would it?
-   * - Gannet Ripple
-     - 1.99
-     - On a stick!
-
-=================
-/file/rm
-=================
-
-.. list-table:: Arguments
-   :widths: 15 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Description
-   * - Albatross
-     - 2.99
-     - On a stick!
-   * - Crunchy Frog
-     - 1.49
-     - If we took the bones out, it wouldn't be
-       crunchy, now would it?
-   * - Gannet Ripple
-     - 1.99
-     - On a stick!
-
-=================
-/file/stat
-=================
-
-.. list-table:: Arguments
-   :widths: 15 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Description
-   * - Albatross
-     - 2.99
-     - On a stick!
-   * - Crunchy Frog
-     - 1.49
-     - If we took the bones out, it wouldn't be
-       crunchy, now would it?
-   * - Gannet Ripple
-     - 1.99
-     - On a stick!
-
+     - error code.  
 
 ======================
 /file/ls
