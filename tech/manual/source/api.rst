@@ -618,26 +618,9 @@ Add a file or directory to cluster.
 =================
 /file/get
 =================
+Download files from the cluster.
 
 .. list-table:: Arguments
-   :widths: 15 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Description
-   * - Albatross
-     - 2.99
-     - On a stick!
-   * - Crunchy Frog
-     - 1.49
-     - If we took the bones out, it wouldn't be
-       crunchy, now would it?
-   * - Gannet Ripple
-     - 1.99
-     - On a stick!
-
-.. list-table:: Output
    :widths: 15 10 10 30
    :header-rows: 1
 
@@ -645,10 +628,45 @@ Add a file or directory to cluster.
      - Type
      - Required
      - Description
-   * - error
+   * - arg
+     - string
+     - yes
+     - The path to the file(s) to be download from the cluster.
+   * - output
+     - string
+     - no
+     - The path where the output should be stored. Default: the endpoint current directory.
+   * - archive
+     - bool
+     - no
+     - Output a TAR archive.
+       Default: “false”. Required: no.
+   * - compress
+     - bool
+     - no
+     - Compress the output with GZIP compression. 
+       Default: “false”, Required: no.
+   * - compression-level
+     - integer
+     - no
+     - The level of compression (1-9). Required: no.
+
+.. list-table:: Http Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
      - integer
      - yes
-     - error code.  
+     - error code. On success, the call to this endpoint will return with 200 and the following body:
+   * - http body
+     - text/plain
+     - no
+     - This endpoint returns a `text/plain` response body.
 
 ======================
 /file/ls
@@ -667,7 +685,6 @@ List directory contents for Unix filesystem objects.
      - file
      - yes
      - The path to the IPFS object(s) to list links from.
-
 
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
