@@ -21,9 +21,16 @@ Index
 `Cluster Server Managment`
 =================================
 
-* :ref:`/cluster/node/list`
-* :ref:`/cluster/node/add`
-* :ref:`/cluster/node/rm`
+* :ref:`/cluster/id`
+* :ref:`/cluster/peers/ls`
+* :ref:`/cluster/peers/add`
+* :ref:`/cluster/peers/rm`
+* :ref:`/cluster/pin/add`
+* :ref:`/cluster/pin/ls`
+* :ref:`/cluster/pin/rm`
+* :ref:`/cluster/status`
+* :ref:`/cluster/sync`
+* :ref:`/cluster/recover`
 
 =======================
 `Endpoints APIs`
@@ -45,6 +52,7 @@ Index
 * :ref:`/filestore/dups`
 * :ref:`/filestore/ls`
 * :ref:`/filestore/verify`
+
 * :ref:`/key/gen`
 * :ref:`/key/list`
 * :ref:`/key/rename`
@@ -56,9 +64,57 @@ Index
 
 Cluster Server Managment
 ------------------------
-     
+
 ===================
-/cluster/node/list
+/cluster/id
+===================
+Show the cluster peers and its daemon information
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - verbose
+     - bool
+     - no
+     - display all extra information.
+     
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200 and the following body:
+
+.. code-block:: json
+
+  {
+  	"id": "<NodeId>",
+  	"peers": [
+  		"/ip4/104.236.176.52/tcp/4001",
+  		"/ip4/104.236.176.52/tcp/4001"
+  	]
+  }
+
+===================
+/cluster/peers/ls
 ===================
 List the cluster servers with open connections.
 
@@ -105,7 +161,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ===================
-/cluster/node/add
+/cluster/peers/add
 ===================
 Add a node to the cluster
 
@@ -143,7 +199,7 @@ Add a node to the cluster
 On success, the call to this endpoint will return with 200.
   
 ===================
-/cluster/node/rm
+/cluster/peers/rm
 ===================
 Remove a node from the cluster.
 
@@ -172,15 +228,325 @@ Remove a node from the cluster.
      - integer
      - yes
      - error code.
-
    * - http body
      - Json
      - no
      - Json string is following
 
+On success, the call to this endpoint will return with 200.
+
+===================
+/cluster/pin/add
+===================
+Pin objects in the cluster
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - arg
+     - string
+     - yes
+     - Path to object(s) to be pinned. Required: yes.
+   * - recursive
+     - bool
+     - yes
+     - Recursively pin the object linked to by the specified object(s). Default: “true”. 
+   * - progress
+     - bool
+     - no
+     - Show progress. Default: "true"
+     
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
 
 On success, the call to this endpoint will return with 200.
 
+.. code-block:: json
+
+  {
+  	"Pins": [
+  		"<CID>"
+  	],
+  	"Progress": "<int>"
+  }
+  
+===================
+/cluster/pin/ls
+===================
+List objects that pinned to the cluster.
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - arg
+     - string
+     - yes
+     - Path to object(s) to be pinned. Required: yes.
+   * - type
+     - string
+     - no
+     - The type of pinned keys to list. Can be “direct”, “indirect”, “recursive”, or “all”. Default: “all”. 
+   * - quiet
+     - bool
+     - no
+     - Write just hashes of objects.
+     
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Keys": {
+  		"<Object CID>": {
+  			"Type": "<string>"
+  		}
+  	}
+  }
+
+===================
+/cluster/pin/rm
+===================
+Remove pinned objects from the cluster.
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - arg
+     - string
+     - yes
+     - Path to object(s) to be pinned. Required: yes.
+   * - recursive
+     - bool
+     - no
+     - Recursively unpin the object linked to by the specified object(s). Default: “true”. 
+     
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Pins": [
+  		"<Object CID>"
+  	]
+  }
+
+===================
+/cluster/status
+===================
+list current status of pins in the cluster.
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - verbose
+     - bool
+     - no
+     - Also write the hashes of non-broken pins.
+   * - quiet
+     - bool
+     - no
+     - Write just hashes of broken pins. default: no.
+     
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Cid": "<string>",
+  	"PinStatus": {
+  		"Ok": "<bool>",
+  		"BadNodes": [{
+  			"Cid": "<string>",
+  			"Err": "<string>"
+  		}]
+  	}
+  } 
+
+=============
+/cluster/sync
+=============
+Re-sync seen status against status reported.
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - arg
+     - string
+     - no
+     - the object CID that need sync.
+     
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Cid": "<string>",
+  	"PinStatus": {
+  		"Ok": "<bool>",
+  		"BadNodes": [{
+  			"Cid": "<string>",
+  			"Err": "<string>"
+  		}]
+  	}
+  }
+
+================
+/cluster/recover
+================
+Attempt to re-pin/unpin CIDs in error state
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - arg
+     - string
+     - no
+     - the object CID that need sync.
+     
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Cid": "<string>",
+  	"PinStatus": {
+  		"Ok": "<bool>",
+  		"BadNodes": [{
+  			"Cid": "<string>",
+  			"Err": "<string>"
+  		}]
+  	}
+  }
+  
 =================
 /file/add
 =================
