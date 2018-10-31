@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath('_ext'))
 
 project = u'Hive.Cluster'
 copyright = u'2018, elastos.org'
-author = u'Yi Wang <wangyi@gmail.com>'
+author = u'Yi Wang <wangyi8848@gmail.com>'
 
 # The short X.Y version
 version = u''
