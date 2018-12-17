@@ -22,4 +22,8 @@ Indices and tables
 
 API Reference
 ==================
-* :doc:`Cluster Commands & API <api>`
+* :doc:`Hive Cluster Commands & API <api>`
+
+Deployment
+===========
+* :doc:`Hive Cluster Deployment <deployment>`

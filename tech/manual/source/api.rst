@@ -56,11 +56,12 @@ Index
 * :ref:`/key/gen`
 * :ref:`/key/list`
 * :ref:`/key/rename`
-* :ref:`/key/rm` 
+* :ref:`/key/rm`
+
 * :ref:`/certificate/token/new`
 * :ref:`/certificate/token/pubKey`
 * :ref:`/certificate/token/privateKey`
-* :ref:`/version`
+* :ref:`/cluster/version`
 
 Cluster Server Managment
 ------------------------
@@ -1684,7 +1685,7 @@ On success, the call to this endpoint will return with 200 and the following bod
      - On a stick!
 
 =================
-/version
+/cluster/version
 =================
 
 Show cluster version information.
