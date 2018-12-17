@@ -90,9 +90,9 @@ The IPFS-cluster is the helper daemon for to make ipfs peer join to cluster grou
 
 Every IPFS daemon has a IPFS-cluster helper. IPFS-cluster helper communicates with others by using P2P protocol either. The IPFS-cluster P2P fundamental(based on libp2p) is as same as IPFS daemon.
 
-Initialze IPFS cluster
+Initialize IPFS cluster
 *******************************************************
-THe IPFS-cluster daemon initialization is as sinimer as ipfs daemon.
+The IPFS-cluster daemon initialization is as similar as ipfs daemon.
 
 Before ipfs-cluster daemon runs, Please run 'ipfs-cluster init' first. This step will create configuration folder(default location is '~/.ipfs-cluster/').
 
@@ -121,9 +121,9 @@ After 'ipfs-cluster init' running, there is a cluster configuration file (servic
 
 Please record the 'secret' string, we MUST copy it to other cluster peers in this ipfs-cluster group.
 
-Set master cluster and add other slave cluster
-********************************************************
-Set a master cluster is very simple, run follow 'ipfs-cluster daemon' without any paramenters.
+Set master cluster and add other slave clusters from it
+***********************************************************
+Set a master cluster is very simple, run directly 'ipfs-cluster-service daemon' command.
 
 .. code-block:: bash
 
@@ -137,7 +137,7 @@ While ipfs-cluster-service running, we can add other slave clusters in any time.
    # add slave cluster from master.
    $ ipfs-cluster-ctl peers add /ip4/222.222.223/tcp/9096/ipfs/QmZUAfeyWagrTAyubVgdXamsj8ca1MbegqZPVXbVtxgQcQ
    
-Please note, slave cluster secret string MUST keep it as same as master.
+Please note, the slave cluster secret string MUST keep it as same as master.
    
 Slave ipfs-cluster join existing hive-cluster group
 *****************************************************
