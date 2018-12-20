@@ -94,16 +94,16 @@ Initialize IPFS cluster
 *******************************************************
 The IPFS-cluster daemon initialization is as similar as ipfs daemon.
 
-Before ipfs-cluster daemon runs, Please run 'ipfs-cluster init' first. This step will create configuration folder(default location is '~/.ipfs-cluster/').
+Before ipfs-cluster daemon runs, Please run 'ipfs-cluster-service init' first. This step will create configuration folder(default location is '~/.ipfs-cluster/').
 
 .. code-block:: bash
 
    # create ipfs-cluster configurations
-   $ ipfs-daemon init
+   $ ipfs-cluster-service init
 
 Change the secret strings to same in all ipfs-cluster
 ********************************************************
-After 'ipfs-cluster init' running, there is a cluster configuration file (service.json) is created in the configuration folder.  This step will change a secret string and share it in all ipfs-cluster daemon.
+After 'ipfs-cluster-service init' running, there is a cluster configuration file (service.json) is created in the configuration folder.  This step will change a secret string and share it in all ipfs-cluster daemon.
 
 .. code-block:: bash
 
