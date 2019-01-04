@@ -1,6 +1,11 @@
 Cluster Commands & API Reference
 ========================================
-Cluster Commands & API Reference
+
+The typical IPFS peer is a resource hunger program. If you install IPFS daemon to your mobile device, it will take up resources and slow down your device.
+We are creating Hive project, which is a low resources consumption scenario.
+
+Hive maintains a big IPFS pinset for sharing. It can provide numerous virtual IPFS peers with only one run a real IPFS peer.
+Hive project distils from IPFS Cluster, but it will have many differences with the IPFS Cluster.
 
 .. toctree::
    :maxdepth: 2
@@ -12,14 +17,12 @@ Cluster Commands & API Reference
 HTTP API
 ========
 
-The typical IPFS peer is a resource hunger program. If you install IPFS daemon to your mobile device, it will take up resources and slow down your device.
-We are creating Hive project, which is a low resources consumption scenario.
+Cluster API vs Node API:
 
-Hive maintains a big IPFS pinset for sharing. It can provide numerous virtual IPFS peers with only one run a real IPFS peer.
-Hive project distils from IPFS Cluster, but it will have many differences with the IPFS Cluster.
+  Cluster APIs are used to manage HIVE cluster, Node APIs are used to interact with file objects.
+  By default, Cluster APIs are accessed via port 9094, and Node APIs are accessed via 9095.
 
-
-:file API vs files API:
+File API vs Files API:
 
   In the endpoints APIs, which have two type of file API: file API and files API.
 
@@ -31,19 +34,19 @@ Index
 -----
 
 =================================
-`Cluster Server Managment`
+`Cluster APIs`
 =================================
 
-* :ref:`/cluster/id`
-* :ref:`/cluster/peers/ls`
-* :ref:`/cluster/peers/add`
-* :ref:`/cluster/peers/rm`
-* :ref:`/cluster/status`
-* :ref:`/cluster/sync`
-* :ref:`/cluster/recover`
+* :ref:`/id`
+* :ref:`/peers`
+* :ref:`/peers/{peerID}`
+* :ref:`/pins`
+* :ref:`/pins/{cid}/sync`
+* :ref:`/pins/{cid}/recover`
+* :ref:`/pins/recover`
 
 =======================
-`Endpoints APIs`
+`Node APIs`
 =======================
 
 * :ref:`/api/v0/uid/new`
@@ -72,9 +75,13 @@ Cluster Server Managment
 ------------------------
 
 ===================
-/cluster/id
+/id
 ===================
+
 Show the cluster peers and its daemon information
+
+:METHOD:
+  GET
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -120,9 +127,12 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ===================
-/cluster/peers/ls
+/peers
 ===================
 List the cluster servers with open connections.
+
+:METHOD: 
+  GET
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -167,9 +177,12 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ===================
-/cluster/peers/add
+/peers/{peerID}
 ===================
-Add a node to the cluster
+Remove a cluster peer from the cluster.
+
+:METHOD:
+  DELETE
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -179,48 +192,10 @@ Add a node to the cluster
      - Type
      - Required
      - Description
-   * - NodeId
+   * - peerID
      - string
      - yes
-     - a string format[##TODO##] of node id.
-
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-On success, the call to this endpoint will return with 200.
-
-===================
-/cluster/peers/rm
-===================
-Remove a node from the cluster.
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - NodeId
-     - string
-     - yes
-     - a string format[##TODO##] of node id.
+     - a string format of peer id.
 
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
@@ -242,9 +217,12 @@ Remove a node from the cluster.
 On success, the call to this endpoint will return with 200.
 
 ===================
-/cluster/status
+/pins
 ===================
 list current status of pins in the cluster.
+
+:METHOD: 
+  GET
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -296,9 +274,12 @@ On success, the call to this endpoint will return with 200.
   } 
 
 =============
-/cluster/sync
+/pins/sync
 =============
-Re-sync seen status against status reported.
+Sync local status from IPFS
+
+:METHOD: 
+  POST
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -346,9 +327,118 @@ On success, the call to this endpoint will return with 200.
   }
 
 ================
-/cluster/recover
+/pins/{cid}/sync
 ================
 Attempt to re-pin/unpin CIDs in error state
+
+:METHOD: 
+  POST
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - cid
+     - string
+     - no
+     - the object CID that need sync.
+
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Cid": "<string>",
+  	"PinStatus": {
+  		"Ok": "<bool>",
+  		"BadNodes": [{
+  			"Cid": "<string>",
+  			"Err": "<string>"
+  		}]
+  	}
+  }
+
+====================
+/pins/{cid}/recover
+====================
+Recover a CID
+
+:METHOD:
+  POST
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - cid
+     - string
+     - no
+     - the object CID that need sync.
+
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Cid": "<string>",
+  	"PinStatus": {
+  		"Ok": "<bool>",
+  		"BadNodes": [{
+  			"Cid": "<string>",
+  			"Err": "<string>"
+  		}]
+  	}
+  }
+
+================
+/pins/recover
+================
+Attempt to re-pin/unpin CIDs in error state
+
+:METHOD: 
+  POST
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -394,7 +484,6 @@ On success, the call to this endpoint will return with 200.
   		}]
   	}
   }
-
 
 ======================
 /api/v0/uid/new
