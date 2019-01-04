@@ -20,15 +20,16 @@ HTTP API
 Cluster API vs Node API:
 
   Cluster APIs are used to manage HIVE cluster, Node APIs are used to interact with file objects.
-  By default, Cluster APIs are accessed via port 9094, and Node APIs are accessed via 9095.
+  By default, Cluster APIs are accessed via port 9094, and Node APIs are accessed via port 9095.
+  All of configurable options are saved in the file "service.json". Please refer: https://cluster.ipfs.io/documentation/configuration/
 
 File API vs Files API:
 
-  In the endpoints APIs, which have two type of file API: file API and files API.
+  In the node APIs, which have two type of file API: file API and files API.
 
 - file APIs are used to interact with object.
 - files APIs are used to interact with virtual file system.
-- In files APIs context, we must keep a uid for to distinguish different filesystems.
+- In files APIs context, it must associate a uid to distinguish different filesystems.
 
 Index
 -----
