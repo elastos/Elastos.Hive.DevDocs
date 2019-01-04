@@ -4,7 +4,7 @@ Cluster Commands & API Reference
 
 .. toctree::
    :maxdepth: 2
-   
+
 .. section-numbering::
    :depth: 5
    :start: 0
@@ -12,7 +12,20 @@ Cluster Commands & API Reference
 HTTP API
 ========
 
-##TODO## Introduction 
+The typical IPFS peer is a resource hunger program. If you install IPFS daemon to your mobile device, it will take up resources and slow down your device.
+We are creating Hive project, which is a low resources consumption scenario.
+
+Hive maintains a big IPFS pinset for sharing. It can provide numerous virtual IPFS peers with only one run a real IPFS peer.
+Hive project distils from IPFS Cluster, but it will have many differences with the IPFS Cluster.
+
+
+:file API vs files API:
+
+  In the endpoints APIs, which have two type of file API: file API and files API.
+
+- file APIs are used to interact with object.
+- files APIs are used to interact with virtual file system.
+- In files APIs context, we must keep a uid for to distinguish different filesystems.
 
 Index
 -----
@@ -25,9 +38,6 @@ Index
 * :ref:`/cluster/peers/ls`
 * :ref:`/cluster/peers/add`
 * :ref:`/cluster/peers/rm`
-* :ref:`/cluster/pin/add`
-* :ref:`/cluster/pin/ls`
-* :ref:`/cluster/pin/rm`
 * :ref:`/cluster/status`
 * :ref:`/cluster/sync`
 * :ref:`/cluster/recover`
@@ -36,32 +46,27 @@ Index
 `Endpoints APIs`
 =======================
 
-* :ref:`/file/add`
-* :ref:`/file/get`
-* :ref:`/file/ls`
-* :ref:`/files/chcid`
-* :ref:`/files/cp`
-* :ref:`/files/flush`
-* :ref:`/files/ls`
-* :ref:`/files/mkdir`
-* :ref:`/files/mv`
-* :ref:`/files/read`
-* :ref:`/files/rm`
-* :ref:`/files/stat`
-* :ref:`/files/write`
-* :ref:`/filestore/dups`
-* :ref:`/filestore/ls`
-* :ref:`/filestore/verify`
-
-* :ref:`/key/gen`
-* :ref:`/key/list`
-* :ref:`/key/rename`
-* :ref:`/key/rm`
-
-* :ref:`/certificate/token/new`
-* :ref:`/certificate/token/pubKey`
-* :ref:`/certificate/token/privateKey`
-* :ref:`/cluster/version`
+* :ref:`/api/v0/uid/new`
+* :ref:`/api/v0/uid/clone`
+* :ref:`/api/v0/file/pin/add`
+* :ref:`/api/v0/file/pin/ls`
+* :ref:`/api/v0/file/pin/rm`
+* :ref:`/api/v0/file/add`
+* :ref:`/api/v0/file/get`
+* :ref:`/api/v0/file/ls`
+* :ref:`/api/v0/files/cp`
+* :ref:`/api/v0/files/flush`
+* :ref:`/api/v0/files/ls`
+* :ref:`/api/v0/files/mkdir`
+* :ref:`/api/v0/files/mv`
+* :ref:`/api/v0/files/read`
+* :ref:`/api/v0/files/rm`
+* :ref:`/api/v0/files/stat`
+* :ref:`/api/v0/files/write`
+* :ref:`/api/v0/name/publish`
+* :ref:`/api/v0/message/pub`
+* :ref:`/api/v0/message/sub`
+* :ref:`/version`
 
 Cluster Server Managment
 ------------------------
@@ -83,7 +88,7 @@ Show the cluster peers and its daemon information
      - bool
      - no
      - display all extra information.
-     
+
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
    :header-rows: 1
@@ -131,7 +136,7 @@ List the cluster servers with open connections.
      - bool
      - no
      - display all extra information.
-     
+
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
    :header-rows: 1
@@ -178,7 +183,7 @@ Add a node to the cluster
      - string
      - yes
      - a string format[##TODO##] of node id.
-     
+
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
    :header-rows: 1
@@ -198,7 +203,7 @@ Add a node to the cluster
      - Json string is following
 
 On success, the call to this endpoint will return with 200.
-  
+
 ===================
 /cluster/peers/rm
 ===================
@@ -216,7 +221,7 @@ Remove a node from the cluster.
      - string
      - yes
      - a string format[##TODO##] of node id.
-     
+
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
    :header-rows: 1
@@ -235,164 +240,6 @@ Remove a node from the cluster.
      - Json string is following
 
 On success, the call to this endpoint will return with 200.
-
-===================
-/cluster/pin/add
-===================
-Pin objects in the cluster
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - arg
-     - string
-     - yes
-     - Path to object(s) to be pinned. Required: yes.
-   * - recursive
-     - bool
-     - yes
-     - Recursively pin the object linked to by the specified object(s). Default: “true”. 
-   * - progress
-     - bool
-     - no
-     - Show progress. Default: "true"
-     
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-On success, the call to this endpoint will return with 200.
-
-.. code-block:: json
-
-  {
-  	"Pins": [
-  		"<CID>"
-  	],
-  	"Progress": "<int>"
-  }
-  
-===================
-/cluster/pin/ls
-===================
-List objects that pinned to the cluster.
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - arg
-     - string
-     - yes
-     - Path to object(s) to be pinned. Required: yes.
-   * - type
-     - string
-     - no
-     - The type of pinned keys to list. Can be “direct”, “indirect”, “recursive”, or “all”. Default: “all”. 
-   * - quiet
-     - bool
-     - no
-     - Write just hashes of objects.
-     
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-On success, the call to this endpoint will return with 200.
-
-.. code-block:: json
-
-  {
-  	"Keys": {
-  		"<Object CID>": {
-  			"Type": "<string>"
-  		}
-  	}
-  }
-
-===================
-/cluster/pin/rm
-===================
-Remove pinned objects from the cluster.
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - arg
-     - string
-     - yes
-     - Path to object(s) to be pinned. Required: yes.
-   * - recursive
-     - bool
-     - no
-     - Recursively unpin the object linked to by the specified object(s). Default: “true”. 
-     
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-On success, the call to this endpoint will return with 200.
-
-.. code-block:: json
-
-  {
-  	"Pins": [
-  		"<Object CID>"
-  	]
-  }
 
 ===================
 /cluster/status
@@ -515,7 +362,7 @@ Attempt to re-pin/unpin CIDs in error state
      - string
      - no
      - the object CID that need sync.
-     
+
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
    :header-rows: 1
@@ -547,9 +394,262 @@ On success, the call to this endpoint will return with 200.
   		}]
   	}
   }
-  
+
+
+======================
+/api/v0/uid/new
+======================
+Create a unique UID from Hive cluster. UID can be used to distinguish different endpoints.
+
+.. list-table:: Arguments
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Arguments
+   - Type
+   - Required
+   - Description
+ * - name
+   - string
+   - yes
+   - name of UID to create.
+
+.. list-table:: HTTP Response
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Argument
+   - Type
+   - Required
+   - Description
+ * - http error
+   - integer
+   - yes
+   - error code.
+ * - http body
+   - Json
+   - no
+   - Json string is following
+
+On success, the call to this endpoint will return with 200 and the following body:
+
+.. code-block:: json
+
+    {
+        "PriKey": "<string>",
+        "PubKey": "<string>"
+    }
+
+======================
+/api/v0/uid/clone
+======================
+Create a new UID from the old one.
+
+.. list-table:: Arguments
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Arguments
+   - Type
+   - Required
+   - Description
+ * - arg
+   - string
+   - yes
+   - old uid to be used to clone.
+ * - arg
+   - string
+   - yes
+   - new uid to create.
+
+.. list-table:: HTTP Response
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Argument
+   - Type
+   - Required
+   - Description
+ * - http error
+   - integer
+   - yes
+   - error code.
+ * - http body
+   - Json
+   - no
+   - Json string is following
+
+On success, the call to this endpoint will return with 200 and the following body:
+
+.. code-block:: json
+
+    {
+      "Was": "<string>",
+      "Now": "<string>",
+      "Id": "<string>",
+      "Overwrite": "<bool>"
+    }
+
+====================
+/api/v0/file/pin/add
+====================
+Pin objects in the cluster
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - arg
+     - string
+     - yes
+     - Path to object(s) to be pinned. Required: yes.
+   * - recursive
+     - bool
+     - yes
+     - Recursively pin the object linked to by the specified object(s). Default: “true”. 
+   * - progress
+     - bool
+     - no
+     - Show progress. Default: "true"
+
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Pins": [
+  		"<CID>"
+  	],
+  	"Progress": "<int>"
+  }
+
+===================
+/api/v0/file/pin/ls
+===================
+List objects that pinned to the cluster.
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - arg
+     - string
+     - yes
+     - Path to object(s) to be pinned. Required: yes.
+   * - type
+     - string
+     - no
+     - The type of pinned keys to list. Can be “direct”, “indirect”, “recursive”, or “all”. Default: “all”. 
+   * - quiet
+     - bool
+     - no
+     - Write just hashes of objects.
+
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Keys": {
+  		"<Object CID>": {
+  			"Type": "<string>"
+  		}
+  	}
+  }
+
+===================
+/api/v0/file/pin/rm
+===================
+Remove pinned objects from the cluster.
+
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Arguments
+     - Type
+     - Required
+     - Description
+   * - arg
+     - string
+     - yes
+     - Path to object(s) to be pinned. Required: yes.
+   * - recursive
+     - bool
+     - no
+     - Recursively unpin the object linked to by the specified object(s). Default: “true”. 
+     
+.. list-table:: HTTP Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code.
+   * - http body
+     - Json
+     - no
+     - Json string is following
+
+On success, the call to this endpoint will return with 200.
+
+.. code-block:: json
+
+  {
+  	"Pins": [
+  		"<Object CID>"
+  	]
+  }
+
 =================
-/file/add
+/api/v0/file/add
 =================
 Add a file or directory to cluster.
 
@@ -617,7 +717,7 @@ Add a file or directory to cluster.
 
 
 =================
-/file/get
+/api/v0/file/get
 =================
 Download files from the cluster.
 
@@ -670,7 +770,7 @@ Download files from the cluster.
      - This endpoint returns a `text/plain` response body.
 
 ======================
-/file/ls
+/api/v0/file/ls
 ======================
 List directory contents for Unix filesystem objects.
 
@@ -730,52 +830,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ======================
-/files/chcid
-======================
-Change the cid version or hash function of the root node of a given path.
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - path
-     - string
-     - no
-     - Path to change. Default: ‘/’.
-
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
-  {
-    "desciption": "<string>"
-  }
-
-======================
-/files/cp
+/api/v0/files/cp
 ======================
 Copy files among clusters.
 
@@ -787,6 +842,10 @@ Copy files among clusters.
      - Type
      - Required
      - Description
+   * - uid
+     - string
+     - yes
+     - a uid for to identify a filesystem context.
    * - source
      - string
      - no
@@ -795,7 +854,6 @@ Copy files among clusters.
      - string
      - no
      - Destination to copy object to.
-
 
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
@@ -815,8 +873,7 @@ Copy files among clusters.
      - no
      - Json string is following
 
-
-On success, the call to this endpoint will return with 200 and the following body:
+On success, the call to this endpoint will return with 200 and the following optional body:
 
 .. code-block:: json
 
@@ -825,7 +882,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ======================
-/files/flush
+/api/v0/files/flush
 ======================
 Flush a given path’s data to cluster.
 
@@ -837,6 +894,10 @@ Flush a given path’s data to cluster.
      - Type
      - Required
      - Description
+   * - uid
+     - string
+     - yes
+     - a uid for to identify a filesystem context.
    * - path
      - string
      - no
@@ -861,7 +922,7 @@ Flush a given path’s data to cluster.
      - Json string is following
 
 
-On success, the call to this endpoint will return with 200 and the following body:
+On success, the call to this endpoint will return with 200 and the following optional body:
 
 .. code-block:: json
 
@@ -870,7 +931,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ======================
-/files/ls
+/api/v0/files/ls
 ======================
 List directories in the private mutable namespace.
 
@@ -882,6 +943,10 @@ List directories in the private mutable namespace.
      - Type
      - Required
      - Description
+   * - uid
+     - string
+     - yes
+     - a uid for to identify a filesystem context.
    * - path
      - string
      - no
@@ -909,21 +974,18 @@ On success, the call to this endpoint will return with 200 and the following bod
 
 .. code-block:: json
 
-  {
-  	"body": {
+  	{
   		"Entries": [{
   			"Name": "<string>",
   			"Type": "<int>",
   			"Size": "<int64>",
   			"Hash": "<string>"
   		}]
-  	},
-  	"desciption": "<string>"
-  }
+  	}
 
-======================
-/files/mkdir
-======================
+=========================
+/api/v0/files/mkdir
+=========================
 Create directories.
 
 .. list-table:: Arguments
@@ -934,6 +996,10 @@ Create directories.
      - Type
      - Required
      - Description
+   * - uid
+     - string
+     - yes
+     - a uid for to identify a filesystem context.
    * - path
      - string
      - yes
@@ -961,7 +1027,7 @@ Create directories.
      - no
      - Json string is following
 
-On success, the call to this endpoint will return with 200 and the following body:
+On success, the call to this endpoint will return with 200 and the following optional body:
 
 .. code-block:: json
 
@@ -970,7 +1036,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ======================
-/files/mv
+/api/v0/files/mv
 ======================
 Move files.
 
@@ -982,6 +1048,10 @@ Move files.
      - Type
      - Required
      - Description
+   * - uid
+     - string
+     - yes
+     - a uid for to identify a filesystem context.
    * - source
      - string
      - yes
@@ -1010,7 +1080,7 @@ Move files.
      - Json string is following
 
 
-On success, the call to this endpoint will return with 200 and the following body:
+On success, the call to this endpoint will return with 200 and the following optional body:
 
 .. code-block:: json
 
@@ -1019,7 +1089,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ======================
-/files/read
+/api/v0/files/read
 ======================
 Read a file in a given path.
 
@@ -1031,6 +1101,10 @@ Read a file in a given path.
      - Type
      - Required
      - Description
+   * - uid
+     - string
+     - yes
+     - a uid for to identify a filesystem context.
    * - path
      - string
      - yes
@@ -1062,7 +1136,7 @@ Read a file in a given path.
      - no
      - Json string is following
 
-On success, the call to this endpoint will return with 200 and the following body:
+On success, the call to this endpoint will return with 200 and the following optional body:
 
 .. code-block:: json
 
@@ -1071,7 +1145,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ======================
-/files/rm
+/api/v0/files/rm
 ======================
 Remove a file.
 
@@ -1083,10 +1157,14 @@ Remove a file.
      - Type
      - Required
      - Description
+   * - uid
+     - string
+     - yes
+     - a uid for to identify a filesystem context.
    * - path
      - string
      - yes
-     - File to remove. 
+     - File to remove.
    * - recursive
      - bool
      - yes
@@ -1111,7 +1189,7 @@ Remove a file.
      - Json string is following
 
 
-On success, the call to this endpoint will return with 200 and the following body:
+On success, the call to this endpoint will return with 200 and the following optional body:
 
 .. code-block:: json
 
@@ -1120,7 +1198,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ======================
-/files/stat
+/api/v0/files/stat
 ======================
 Display file status.
 
@@ -1132,6 +1210,10 @@ Display file status.
      - Type
      - Required
      - Description
+   * - uid
+     - string
+     - yes
+     - a uid for to identify a filesystem context.
    * - path
      - string
      - yes
@@ -1184,7 +1266,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ======================
-/files/write
+/api/v0/files/write
 ======================
 Write to a mutable file in a given filesystem.
 
@@ -1196,10 +1278,14 @@ Write to a mutable file in a given filesystem.
      - Type
      - Required
      - Description
+   * - uid
+     - string
+     - yes
+     - a uid for to identify a filesystem context.
    * - path
      - string
      - yes
-     - Path to write to. 
+     - Path to write to.
    * - file
      - file
      - yes
@@ -1248,7 +1334,7 @@ Write to a mutable file in a given filesystem.
      - no
      - Json string is following
 
-On success, the call to this endpoint will return with 200 and the following body:
+On success, the call to this endpoint will return with 200 and the following optional body:
 
 .. code-block:: json
 
@@ -1257,157 +1343,108 @@ On success, the call to this endpoint will return with 200 and the following bod
   }
 
 ======================
-/filestore/dups
+/api/v0/name/publish
 ======================
-List blocks that are both in the filestore and standard block storage.
+Publish user context file or directory to public.
 
 .. list-table:: Arguments
-   :widths: 80
-   :header-rows: 0
+ :widths: 15 10 10 30
+ :header-rows: 1
 
-   * - This endpoint takes no arguments.
-
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
- {
- 	"data": {
- 		"Ref": "<string>",
- 		"Err": "<string>"
- 	},
- 	"desciption": "<string>"
- }
+ * - Arguments
+   - Type
+   - Required
+   - Description
+ * - uid
+   - string
+   - yes
+   - a uid for to identify a filesystem context.
+ * - lifetime
+   - string
+   - no
+   - Time duration that the record will be valid for. This accepts durations such as “300s”, “1.5h” or “2h45m”. Valid time units are “ns”, “us” (or “µs”), “ms”, “s”, “m”, “h”. Default: “24h”. Required: no.
+ * - ipfs file object
+   - string
+   - yes
+   - the file object to be published.
  
-======================
-/filestore/ls
-======================
-List objects in filestore.
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - cid
-     - string
-     - no
-     - Cid of objects to list.
-
 .. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
+ :widths: 15 10 10 30
+ :header-rows: 1
 
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
+ * - Argument
+   - Type
+   - Required
+   - Description
+ * - http error
+   - integer
+   - yes
+   - error code.
+ * - http body
+   - Json
+   - no
+   - Json string is following
 
 On success, the call to this endpoint will return with 200 and the following body:
+
+.. code-block:: json
+
+    {
+        "Name": "<string>"
+        "Value": "<string>"
+    }
+
+======================
+/api/v0/message/pub
+======================
+Publish a message to a given pubsub topic.
+
+.. list-table:: Arguments
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Arguments
+   - Type
+   - Required
+   - Description
+ * - topic
+   - string
+   - yes
+   - name of topic to publish.
+ * - message
+   - string
+   - yes
+   - message or file hash .
+
+.. list-table:: HTTP Response
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Argument
+   - Type
+   - Required
+   - Description
+ * - http error
+   - integer
+   - yes
+   - error code.
+ * - http body
+   - Json
+   - no
+   - Json string is following
+
+On success, the call to this endpoint will return with 200 and the following optional body:
 
 .. code-block:: json
 
   {
-  	"data": {
-  		"Status": "<int32>",
-  		"ErrorMsg": "<string>",
-  		"Key": {
-  			"/": "<cid-string>"
-  		},
-  		"FilePath": "<string>",
-  		"Offset": "<uint64>",
-  		"Size": "<uint64>"
-  	},
-  	"desciption": "<string>"
+    "desciption": "<string>"
   }
 
 ======================
-/filestore/verify
+/api/v0/message/sub
 ======================
-Verify objects in filestore.
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - cid
-     - string
-     - no
-     - Cid of objects to verify. 
-   * - file-order
-     - bool
-     - no
-     - verify the objects based on the order of the backing file. 
-
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
-  {
-  	"data": {
-  		"Status": "<int32>",
-  		"ErrorMsg": "<string>",
-  		"Key": {
-  			"/": "<cid-string>"
-  		},
-  		"FilePath": "<string>",
-  		"Offset": "<uint64>",
-  		"Size": "<uint64>"
-  	},
-  	"desciption": "<string>"
-  }
-  
-======================
-/key/gen
-======================
-Create a new keypair
+Subscribe to message to a given topic.
 
 .. list-table:: Arguments
  :widths: 15 10 10 30
@@ -1417,18 +1454,10 @@ Create a new keypair
    - Type
    - Required
    - Description
- * - name
+ * - topic
    - string
    - yes
-   - name of key to create.
- * - type
-   - string
-   - no
-   - type of the key to create [rsa, ed25519]. 
- * - size
-   - int
-   - no
-   - size of the key to generate. 
+   - name of topic to be subscribed.
 
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
@@ -1452,240 +1481,27 @@ On success, the call to this endpoint will return with 200 and the following bod
 .. code-block:: json
 
     {
-    	"data": {
-            "Name": "<string>",
-            "Id": "<string>"
-    	},
-    	"desciption": "<string>"
+      "Message": {
+        "From": [
+          "<uint8>"
+        ],
+        "Data": [
+          "<uint8>"
+        ],
+        "Seqno": [
+          "<uint8>"
+        ],
+        "TopicIDs": [
+          "<string>"
+        ],
+        "XXX_unrecognized": [
+          "<uint8>"
+        ]
+      }
     }
-
-======================
-/key/list
-======================
-List all keypairs in the given peer 
-
-.. list-table:: Arguments
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Arguments
-   - Type
-   - Required
-   - Description
- * - name
-   - string
-   - yes
-   - name of key to create.
- * - type
-   - string
-   - no
-   - type of the key to create [rsa, ed25519]. 
- * - size
-   - int
-   - no
-   - size of the key to generate. 
-
-.. list-table:: HTTP Response
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Argument
-   - Type
-   - Required
-   - Description
- * - http error
-   - integer
-   - yes
-   - error code.
- * - http body
-   - Json
-   - no
-   - Json string is following
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
-    {
-    	"data": {
-            "Name": "<string>",
-            "Id": "<string>"
-    	},
-    	"desciption": "<string>"
-    }
-
-======================
-/key/rename
-======================
-Rename a keypair
-
-.. list-table:: Arguments
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Arguments
-   - Type
-   - Required
-   - Description
- * - name
-   - string
-   - yes
-   - name of key to create.
- * - newName
-   - string
-   - yes
-   - name of key to create.
- * - force
-   - bool
-   - no
-   - Allow to overwrite an existing key. 
-
-.. list-table:: HTTP Response
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Argument
-   - Type
-   - Required
-   - Description
- * - http error
-   - integer
-   - yes
-   - error code.
- * - http body
-   - Json
-   - no
-   - Json string is following
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
-    {
-    	"data": {
-    		"Was": "<string>",
-    		"Now": "<string>",
-    		"Id": "<string>",
-    		"Overwrite": "<bool>"
-    	},
-    	"desciption": "<string>"
-    }
-
-======================
-/key/rm
-======================
-remove a keypair
-
-.. list-table:: Arguments
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Arguments
-   - Type
-   - Required
-   - Description
- * - name
-   - string
-   - yes
-   - name of key to remove.
-
-.. list-table:: HTTP Response
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Argument
-   - Type
-   - Required
-   - Description
- * - http error
-   - integer
-   - yes
-   - error code.
- * - http body
-   - Json
-   - no
-   - Json string is following
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
-    {
-    	"data": {
-    		"Name": "<string>",
-    		"Id": "<string>"
-    	},
-    	"desciption": "<string>"
-    }
-    
-=========================
-/certificate/token/new
-=========================
-
-.. list-table:: Arguments
-   :widths: 15 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Description
-   * - Albatross
-     - 2.99
-     - On a stick!
-   * - Crunchy Frog
-     - 1.49
-     - If we took the bones out, it wouldn't be
-       crunchy, now would it?
-   * - Gannet Ripple
-     - 1.99
-     - On a stick!
-     
-=========================
-/certificate/token/pubKey
-=========================
-
-.. list-table:: Arguments
-   :widths: 15 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Description
-   * - Albatross
-     - 2.99
-     - On a stick!
-   * - Crunchy Frog
-     - 1.49
-     - If we took the bones out, it wouldn't be
-       crunchy, now would it?
-   * - Gannet Ripple
-     - 1.99
-     - On a stick!
-
-=============================
-/certificate/token/privateKey
-=============================
-
-.. list-table:: Arguments
-   :widths: 15 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Description
-   * - Albatross
-     - 2.99
-     - On a stick!
-   * - Crunchy Frog
-     - 1.49
-     - If we took the bones out, it wouldn't be
-       crunchy, now would it?
-   * - Gannet Ripple
-     - 1.99
-     - On a stick!
 
 =================
-/cluster/version
+/version
 =================
 
 Show cluster version information.
@@ -1714,7 +1530,7 @@ Show cluster version information.
    - bool
    - no
    - Only show all version strings.
-   
+
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
  :header-rows: 1
@@ -1737,12 +1553,8 @@ On success, the call to this endpoint will return with 200 and the following bod
 .. code-block:: json
 
     {
-    	"data": {
-            "Version": "<string>",
-            "Commit": "<string>",
-            "Repo": "<string>",
-            "System": "<string>",
-        },
-    	"desciption": "<string>"
+        "Version": "<string>",
+        "Commit": "<string>",
+        "Repo": "<string>",
+        "System": "<string>",
     }
-    
