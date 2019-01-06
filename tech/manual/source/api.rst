@@ -127,6 +127,23 @@ On success, the call to this endpoint will return with 200 and the following bod
   	]
   }
 
+Example: curl http://10.10.165.11:9094/id
+
+    {"id":"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ","addresses":["/p2p-  
+    circuit/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ","/ip4/127.0.0.1
+    /tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ","/ip4/
+    10.10.165.11/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRag
+    nkWUQ"],"cluster_peers":"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWU
+    Q"],"cluster_peers_addresses":],"version":"0.7.0+git13a161f056792cfb5
+    0c1ef53b6688716a211381f","commit":"","rpc_protocol_version":"/hivecl
+    uster/0.7/rpc","error":"","ipfs":{"id":"QmdFxnZoS84UvUCiWmGX8ynvJ31iS
+    HQgibKtb9ob6oZeoG","addresses":"/ip6/::1/tcp/4001/ipfs/QmdFxnZoS84UvU
+    CiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG","/ip4/127.0.0.1/tcp/4001/ipfs/QmdFx
+    ZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG","/ip4/10.10.165.11/tcp/4001
+    /ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG"],"error":""},"pe
+    ername":"localhost.localdomain"}
+
+
 ===================
 /peers
 ===================
@@ -176,6 +193,23 @@ On success, the call to this endpoint will return with 200 and the following bod
   	  "/ip4/104.236.176.52/tcp/4001"
   	]
   }
+  
+Example: curl http://10.10.165.11:9094/peers
+
+    {"id":"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ","addresses":["/p2p-  
+    circuit/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ","/ip4/127.0.0.1
+    /tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ","/ip4/
+    10.10.165.11/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRag
+    nkWUQ"],"cluster_peers":"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWU
+    Q"],"cluster_peers_addresses":],"version":"0.7.0+git13a161f056792cfb5
+    0c1ef53b6688716a211381f","commit":"","rpc_protocol_version":"/hivecl
+    uster/0.7/rpc","error":"","ipfs":{"id":"QmdFxnZoS84UvUCiWmGX8ynvJ31iS
+    HQgibKtb9ob6oZeoG","addresses":"/ip6/::1/tcp/4001/ipfs/QmdFxnZoS84UvU
+    CiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG","/ip4/127.0.0.1/tcp/4001/ipfs/QmdFx
+    ZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG","/ip4/10.10.165.11/tcp/4001
+    /ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG"],"error":""},"pe
+    ername":"localhost.localdomain"}
+
 
 ===================
 /peers/{peerID}
@@ -217,6 +251,11 @@ Remove a cluster peer from the cluster.
 
 On success, the call to this endpoint will return with 200.
 
+Example: curl http://10.10.165.11:9094/peers
+
+.. code-block:: json
+
+	
 ===================
 /pins
 ===================
@@ -274,6 +313,10 @@ On success, the call to this endpoint will return with 200.
   	}
   } 
 
+Example: curl http://10.10.165.11:9094/pins
+
+	[]
+
 =============
 /pins/sync
 =============
@@ -327,6 +370,10 @@ On success, the call to this endpoint will return with 200.
   	}
   }
 
+Example: curl http://10.10.165.11:9094/pins/sync
+
+	{"code":400,"message":"error decoding Cid: selected encoding not supported"}
+	
 ================
 /pins/{cid}/sync
 ================
@@ -489,7 +536,7 @@ On success, the call to this endpoint will return with 200.
 ======================
 /api/v0/uid/new
 ======================
-Create a unique UID from Hive cluster. UID can be used to distinguish different endpoints.
+Create a unique UID from Hive cluster. UID can be used to distinguish different endpoints.
 
 .. list-table:: Arguments
  :widths: 15 10 10 30
@@ -1648,3 +1695,7 @@ On success, the call to this endpoint will return with 200 and the following bod
         "Repo": "<string>",
         "System": "<string>",
     }
+
+Example:	curl http://10.10.165.11:9094/version
+
+	{"Version":"0.7.0+git13a161f056792cfb50c1ef53b6688716a211381f"}
