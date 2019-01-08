@@ -215,6 +215,7 @@ Example: curl http://10.10.165.11:9094/peers
 
 .. code-block:: json
 
+[
   {
     "id": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
     "addresses": [
@@ -224,9 +225,14 @@ Example: curl http://10.10.165.11:9094/peers
       "/ip4/58.246.225.150/tcp/23868/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ"
     ],
     "cluster_peers": [
-      "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ"
+      "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+      "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
     ],
-    "cluster_peers_addresses": [],
+    "cluster_peers_addresses": [
+      "/p2p-circuit/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+      "/ip4/127.0.0.1/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+      "/ip4/10.10.165.12/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
+    ],
     "version": "0.7.0+git13a161f056792cfb50c1ef53b6688716a211381f",
     "commit": "",
     "rpc_protocol_version": "/hivecluster/0.7/rpc",
@@ -242,8 +248,40 @@ Example: curl http://10.10.165.11:9094/peers
       "error": ""
     },
     "peername": "localhost.localdomain"
+  },
+  {
+    "id": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+    "addresses": [
+      "/p2p-circuit/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+      "/ip4/127.0.0.1/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+      "/ip4/10.10.165.12/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
+    ],
+    "cluster_peers": [
+      "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+      "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
+    ],
+    "cluster_peers_addresses": [
+      "/ip4/10.10.165.11/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+      "/p2p-circuit/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+      "/ip4/127.0.0.1/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+      "/ip4/58.246.225.150/tcp/23868/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ"
+    ],
+    "version": "0.7.0+git13a161f056792cfb50c1ef53b6688716a211381f",
+    "commit": "",
+    "rpc_protocol_version": "/hivecluster/0.7/rpc",
+    "error": "",
+    "ipfs": {
+      "id": "QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3",
+      "addresses": [
+        "/ip4/127.0.0.1/tcp/4001/ipfs/QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3",
+        "/ip4/10.10.165.12/tcp/4001/ipfs/QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3",
+        "/ip6/::1/tcp/4001/ipfs/QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3"
+      ],
+      "error": ""
+    },
+    "peername": "localhost.localdomain"
   }
-
+]
 
 ===================
 /peers/{peerID}
@@ -289,7 +327,7 @@ Example: http://i.storswift.com:9194/peers/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtE
 
 .. code-block:: json
 
-    404 page not found
+
 	
 ===================
 /pins
@@ -352,7 +390,30 @@ Example: curl http://10.10.165.11:9094/pins
 
 .. code-block:: json
 
-	[]
+[
+  {
+    "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+    "peer_map": {
+      "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
+        "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+        "peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+        "peername": "localhost.localdomain",
+        "status": "pinned",
+        "timestamp": "2019-01-07T07:46:34Z",
+        "error": ""
+      },
+      "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn": {
+        "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+        "peer": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+        "peername": "localhost.localdomain",
+        "status": "pinned",
+        "timestamp": "2019-01-08T06:46:59Z",
+        "error": ""
+      }
+    }
+  }
+]
+
 
 =============
 /pins/sync
@@ -410,11 +471,16 @@ On success, the call to this endpoint will return with 200.
 Example: curl http://10.10.165.11:9094/pins/sync
 
 .. code-block:: json
+GET
 
     {
       "code": 400,
       "message": "error decoding Cid: selected encoding not supported"
     }
+	
+POST
+
+	[]
 	
 ================
 /pins/{cid}/sync
@@ -469,14 +535,11 @@ On success, the call to this endpoint will return with 200.
   	}
   }
 
-Example: curl http://10.10.165.11:9094/pins//sync
+Example:
 
 .. code-block:: json
 
-    {
-      "code": 400,
-      "message": "error decoding Cid: selected encoding not supported"
-    }
+
 
 ====================
 /pins/{cid}/recover
@@ -588,10 +651,6 @@ Example: curl http://i.storswift.com:9194/pins/recover
 
 .. code-block:: json
 
-    {
-      "code": 400,
-      "message": "error decoding Cid: selected encoding not supported"
-    }
 
 ======================
 /api/v0/uid/new
@@ -980,6 +1039,35 @@ Download files from the cluster.
      - no
      - This endpoint returns a `text/plain` response body.
 
+Example: curl -v "http://i.storswift.com:9195/api/v0/get?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
+
+
+
+* About to connect() to i.storswift.com port 9195 (#0)
+*   Trying 58.246.225.150...
+* Connected to i.storswift.com (58.246.225.150) port 9195 (#0)
+> GET /api/v0/get?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: i.storswift.com:9195
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: X-Stream-Output, X-Chunked-Output, X-Content-Length
+< Access-Control-Expose-Headers: X-Stream-Output, X-Chunked-Output, X-Content-Length
+< Content-Type: text/plain
+< Date: Tue, 08 Jan 2019 06:59:16 GMT
+< Server: go-ipfs/0.4.18
+< Trailer: X-Stream-Error
+< Vary: Origin
+< X-Content-Length: 15
+< X-Stream-Output: 1
+< Transfer-Encoding: chunked
+< 
+QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF0000644000000000000000000000000713415045104017157 
+0ustar0000000000000000conf.py* Connection #0 to host i.storswift.com left intact
+
+	 
+	 
 ======================
 /api/v0/file/ls
 ======================
@@ -1039,6 +1127,24 @@ On success, the call to this endpoint will return with 200 and the following bod
   		}
   	}
   }
+  
+Example: http://10.10.165.11:9095/api/v0/file/ls?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF
+
+.. code-block:: json
+
+{
+  "Arguments": {
+    "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
+  },
+  "Objects": {
+    "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF": {
+      "Hash": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+      "Size": 7,
+      "Type": "File",
+      "Links": null
+    }
+  }
+}
 
 ======================
 /api/v0/files/cp
@@ -1091,6 +1197,8 @@ On success, the call to this endpoint will return with 200 and the following opt
   {
     "desciption": "<string>"
   }
+  
+  
 
 ======================
 /api/v0/files/flush
@@ -1141,6 +1249,13 @@ On success, the call to this endpoint will return with 200 and the following opt
     "desciption": "<string>"
   }
 
+
+Example curl http://10.10.165.11:9095/api/v0/files/flush
+
+.. code-block:: json
+
+	[]
+  
 ======================
 /api/v0/files/ls
 ======================
@@ -1194,6 +1309,28 @@ On success, the call to this endpoint will return with 200 and the following bod
   		}]
   	}
 
+Example: curl http://10.10.165.11:9095/api/v0/files/ls
+
+.. code-block:: json
+
+	{
+	  "Entries": [
+		{
+		  "Name": "suxx",
+		  "Type": 0,
+		  "Size": 0,
+		  "Hash": ""
+		},
+		{
+		  "Name": "suxx2",
+		  "Type": 0,
+		  "Size": 0,
+		  "Hash": ""
+		}
+	  ]
+	}
+
+	
 =========================
 /api/v0/files/mkdir
 =========================
@@ -1246,6 +1383,12 @@ On success, the call to this endpoint will return with 200 and the following opt
     "desciption": "<string>"
   }
 
+Example curl http://10.10.165.11:9095/api/v0/files/mkdir?arg=/suxx  
+
+.. code-block:: json
+
+	[]
+  
 ======================
 /api/v0/files/mv
 ======================
@@ -1476,6 +1619,19 @@ On success, the call to this endpoint will return with 200 and the following bod
   	"SizeLocal": "<uint64>"
   }
 
+Example: curl http://10.10.165.11:9095/api/v0/files/stat?arg=/
+
+.. code-block:: json
+
+	{
+	  "Hash": "QmaLfcyshh1PDiGSxVPspqA7BdjKX1GWp53C1GUHpD9PvF",
+	  "Size": 0,
+	  "CumulativeSize": 105,
+	  "Blocks": 2,
+	  "Type": "directory"
+	}
+  
+  
 ======================
 /api/v0/files/write
 ======================
@@ -1553,6 +1709,8 @@ On success, the call to this endpoint will return with 200 and the following opt
     "desciption": "<string>"
   }
 
+  
+  
 ======================
 /api/v0/name/publish
 ======================
@@ -1782,4 +1940,8 @@ On success, the call to this endpoint will return with 200 and the following bod
 
 Example:	curl http://10.10.165.11:9094/version
 
-	{"Version":"0.7.0+git13a161f056792cfb50c1ef53b6688716a211381f"}
+.. code-block:: json
+
+	{
+	  "Version": "0.7.0+git13a161f056792cfb50c1ef53b6688716a211381f"
+	}
