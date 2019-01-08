@@ -1,7 +1,8 @@
 Cluster Commands & API Reference
 ========================================
 
-The typical IPFS peer is a resource hunger program. If you install IPFS daemon to your mobile device, it will take up resources and slow down your device.
+The typical IPFS peer is a resource hunger program. If you install IPFS daemon to your mobile device,
+it will take up resources and slow down your device.
 We are creating Hive project, which is a low resources consumption scenario.
 
 Hive maintains a big IPFS pinset for sharing. It can provide numerous virtual IPFS peers with only one run a real IPFS peer.
@@ -51,7 +52,7 @@ Index
 =======================
 
 * :ref:`/api/v0/uid/new`
-* :ref:`/api/v0/uid/clone`
+* :ref:`/api/v0/uid/login`
 * :ref:`/api/v0/file/pin/add`
 * :ref:`/api/v0/file/pin/ls`
 * :ref:`/api/v0/file/pin/rm`
@@ -655,20 +656,17 @@ Example: curl http://i.storswift.com:9194/pins/recover
 ======================
 /api/v0/uid/new
 ======================
-Create a unique UID from Hive cluster. UID can be used to distinguish different endpoints.
+Create a unique UID and peer ID pair from Hive cluster. The UID can be used to identify endpoints in communication，
+the PeerID is a virtual IPFS peer ID.
 
 .. list-table:: Arguments
  :widths: 15 10 10 30
- :header-rows: 1
+ :header-rows: 0
 
  * - Arguments
    - Type
    - Required
    - Description
- * - name
-   - string
-   - yes
-   - name of UID to create.
 
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
@@ -692,16 +690,16 @@ On success, the call to this endpoint will return with 200 and the following bod
 .. code-block:: json
 
     {
-        "PriKey": "<string>",
-        "PubKey": "<string>"
+        "UID": "<string>",
+        "PeerID": "<string>"
     }
 
-Example: http://10.10.165.11:9095/api/v0/uid/new    
+Example: http://10.10.165.11:9095/api/v0/uid/new
 
 ======================
-/api/v0/uid/clone
+/api/v0/uid/login
 ======================
-Create a new UID from the old one.
+Log in to Hive Cluster using the UID you created earlier.
 
 .. list-table:: Arguments
  :widths: 15 10 10 30
@@ -711,14 +709,10 @@ Create a new UID from the old one.
    - Type
    - Required
    - Description
- * - arg
+ * - uid
    - string
    - yes
-   - old uid to be used to clone.
- * - arg
-   - string
-   - yes
-   - new uid to create.
+   - The UID you created earlier.
 
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
@@ -742,13 +736,12 @@ On success, the call to this endpoint will return with 200 and the following bod
 .. code-block:: json
 
     {
-      "Was": "<string>",
-      "Now": "<string>",
-      "Id": "<string>",
-      "Overwrite": "<bool>"
+      "UID": "<string>",
+      "OldUID": "<string>",
+      "PeerID": "<string>"
     }
 
-Example: http://10.10.165.11:9095/api/v0/uid/clone    
+Example: http://127.0.0.1:9095/api/v0/uid/login?uid=uid-124a5834-e468-444f-a5ad-16d136a590df 
 
 ====================
 /api/v0/file/pin/add
