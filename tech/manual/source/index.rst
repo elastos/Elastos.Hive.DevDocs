@@ -13,13 +13,6 @@ Welcome to hive.cluster's documentation!
 Hive.Cluster is a decentralized File Storage Service that based on IPFS cluster.
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
 API Reference
 ==================
 * :doc:`Hive Cluster Commands & API <api>`
