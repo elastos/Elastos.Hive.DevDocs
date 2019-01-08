@@ -1202,15 +1202,17 @@ Copy files among clusters.
      - no
      - Json string is following
 
-On success, the call to this endpoint will return with 200 and the following optional body:
+On success, the call to this endpoint will return with 200 or the following optional body:
 
 .. code-block:: json
 
   {
-    "desciption": "<string>"
+    "Message": "<string>"
   }
   
   
+
+.. http://127.0.0.1:9095/api/v0/files/cp?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&source=/ipfs/QmcFUHo1DBpydnTSeuXszKgQqnXQCJq6Wu1BUdzEfuRahM&dest=/002
 
 ======================
 /api/v0/files/flush
@@ -1253,21 +1255,16 @@ Flush a given path’s data to cluster.
      - Json string is following
 
 
-On success, the call to this endpoint will return with 200 and the following optional body:
+On success, the call to this endpoint will return with 200 or the following optional body:
 
 .. code-block:: json
 
   {
-    "desciption": "<string>"
+    "Message": "<string>"
   }
 
+.. http://127.0.0.1:9095/api/v0/files/flush?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&path=/001
 
-Example curl http://10.10.165.11:9095/api/v0/files/flush
-
-.. code-block:: json
-
-	[]
-  
 ======================
 /api/v0/files/ls
 ======================
@@ -1321,7 +1318,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   		}]
   	}
 
-Example: curl http://10.10.165.11:9095/api/v0/files/ls
+Example: curl http://127.0.0.1:9095/api/v0/files/ls?uid=uid-f996965a-f916-463c-8d4e-f809b590b783&path=/
 
 .. code-block:: json
 
@@ -1342,7 +1339,6 @@ Example: curl http://10.10.165.11:9095/api/v0/files/ls
 	  ]
 	}
 
-	
 =========================
 /api/v0/files/mkdir
 =========================
@@ -1365,7 +1361,7 @@ Create directories.
      - yes
      - Path to dir to make.
    * - parents
-     - string
+     - bool
      - no
      - The parent directories. No error if existing, make parent directories as needed.
      
@@ -1387,12 +1383,12 @@ Create directories.
      - no
      - Json string is following
 
-On success, the call to this endpoint will return with 200 and the following optional body:
+On success, the call to this endpoint will return with 200 or the following optional body:
 
 .. code-block:: json
 
   {
-    "desciption": "<string>"
+    "Message": "<string>"
   }
 
 Example curl http://10.10.165.11:9095/api/v0/files/mkdir?arg=/suxx  
@@ -1446,12 +1442,12 @@ Move files.
      - Json string is following
 
 
-On success, the call to this endpoint will return with 200 and the following optional body:
+On success, the call to this endpoint will return with 200 or the following optional body:
 
 .. code-block:: json
 
   {
-    "desciption": "<string>"
+    "Message": "<string>"
   }
 
 ======================
@@ -1502,12 +1498,12 @@ Read a file in a given path.
      - no
      - Json string is following
 
-On success, the call to this endpoint will return with 200 and the following optional body:
+On success, the call to this endpoint will return with 200 or the following optional body:
 
 .. code-block:: json
 
   {
-    "desciption": "<string>"
+    "Message": "<string>"
   }
 
 ======================
@@ -1533,8 +1529,8 @@ Remove a file.
      - File to remove.
    * - recursive
      - bool
-     - yes
-     -  Recursively remove directories. 
+     - no
+     - Recursively remove directories. default: false
 
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
@@ -1555,12 +1551,12 @@ Remove a file.
      - Json string is following
 
 
-On success, the call to this endpoint will return with 200 and the following optional body:
+On success, the call to this endpoint will return with 200 or the following optional body:
 
 .. code-block:: json
 
   {
-    "desciption": "<string>"
+    "Message": "<string>"
   }
 
 ======================
@@ -1713,12 +1709,12 @@ Write to a mutable file in a given filesystem.
      - no
      - Json string is following
 
-On success, the call to this endpoint will return with 200 and the following optional body:
+On success, the call to this endpoint will return with 200 or the following optional body:
 
 .. code-block:: json
 
   {
-    "desciption": "<string>"
+    "Message": "<string>"
   }
 
   
@@ -1824,12 +1820,12 @@ Publish a message to a given pubsub topic.
    - no
    - Json string is following
 
-On success, the call to this endpoint will return with 200 and the following optional body:
+On success, the call to this endpoint will return with 200 or the following optional body:
 
 .. code-block:: json
 
   {
-    "desciption": "<string>"
+    "Message": "<string>"
   }
 
 ======================
