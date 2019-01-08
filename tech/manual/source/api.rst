@@ -3,7 +3,7 @@ Cluster Commands & API Reference
 
 The typical IPFS peer is a resource hunger program. If you install IPFS daemon to your mobile device,
 it will take up resources and slow down your device.
-We are creating Hive project, which is a low resources consumption scenario.
+We are creating Hive project, which is a low resources consumption scenario.
 
 Hive maintains a big IPFS pinset for sharing. It can provide numerous virtual IPFS peers with only one run a real IPFS peer.
 Hive project distils from IPFS Cluster, but it will have many differences with the IPFS Cluster.
@@ -122,9 +122,18 @@ On success, the call to this endpoint will return with 200 and the following bod
 
   {
   	"id": "<NodeId>",
-  	"peers": [
-  		"/ip4/104.236.176.52/tcp/4001",
-  		"/ip4/104.236.176.52/tcp/4001"
+  	"cluster-peers": [
+		"cluster_peers_addresses": [],
+		"version":	,
+		"commit":	,
+		"rpc_protocol_version":	,
+		"error":	,
+		"ipfs": {
+			"id":	,
+			"addresses": [],
+			"error": ,
+		},
+		"peername":	,
   	]
   }
 
@@ -206,17 +215,27 @@ On success, the call to this endpoint will return with 200 and the following bod
 .. code-block:: json
 
   {
-  	"data": [
-  	  "/ip4/104.236.176.52/tcp/4001",
-  	  "/ip4/104.236.176.52/tcp/4001"
-  	]
+  	"id": "<NodeId>",
+	"addresses": [],
+  	"cluster-peers": [],
+	"cluster_peers_addresses": [],
+	"version":	,
+	"commit":	,
+	"rpc_protocol_version":	,
+	"error":	,
+	"ipfs": {
+		"id":	,
+		"addresses": []	,
+		"error": ,
+	},
+	"peername":	,  
   }
   
 Example: curl http://10.10.165.11:9094/peers
 
 .. code-block:: json
 
-[
+
   {
     "id": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
     "addresses": [
@@ -282,7 +301,7 @@ Example: curl http://10.10.165.11:9094/peers
     },
     "peername": "localhost.localdomain"
   }
-]
+
 
 ===================
 /peers/{peerID}
