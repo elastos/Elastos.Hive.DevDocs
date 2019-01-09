@@ -120,9 +120,9 @@ On success, the call to this endpoint will return with 200 and the following bod
 
 .. code-block:: json
 
-  {
-  	"id": "<NodeId>",
-  	"cluster-peers": [
+	{
+	"id": "<NodeId>",
+	"cluster-peers": [
 		"cluster_peers_addresses": [],
 		"version": "<string>",
 		"commit": "<string>",
@@ -134,8 +134,8 @@ On success, the call to this endpoint will return with 200 and the following bod
 			"error": "<string>",
 		},
 		"peername": "<string>",
-  	]
-  }
+	]
+	}
 
 Example: curl http://10.10.165.11:9094/id
 
@@ -515,19 +515,11 @@ Example: curl -X POST  http://10.10.165.11:9094/pins/QmXbB1Ad9TWt9SqcyiG6iAW6SpK
 
 .. code-block:: json
 
-GET
-
-    {
-      "code": 400,
-      "message": "error decoding Cid: selected encoding not supported"
-    }
-	
-POST
-
 	{
 	  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
 	  "peer_map": {
-		"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
+		"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": 
+		{
 		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
 		  "peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
 		  "peername": "localhost.localdomain",
@@ -535,7 +527,8 @@ POST
 		  "timestamp": "2019-01-07T07:46:34Z",
 		  "error": ""
 		},
-		"QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn": {
+		"QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn": 
+		{
 		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
 		  "peer": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
 		  "peername": "localhost.localdomain",
@@ -934,9 +927,11 @@ On success, the call to this endpoint will return with 200.
 .. code-block:: json
 
   {
-  	"Keys": {
-  		"<Object CID>": {
-  			"Type": "<string>"
+  	"Keys": 
+	{
+  		"<Object CID>": 
+		{
+  		  "Type": "<string>"
   		}
   	}
   }
@@ -945,13 +940,15 @@ On success, the call to this endpoint will return with 200.
   
 Example: curl "http://i.storswift.com:9195/api/v0/pin/ls"
   
-	{
-		"Keys": {
-			"QmYZmegdpcRzVa2JQskN8trD8XUvdvd9FqSATRXpGr1DTP": {
-					"Type":"recursive"
-			}
-		}
-	}
+    {
+        "Keys":
+        {
+        "QmYZmegdpcRzVa2JQskN8trD8XUvdvd9FqSATRXpGr1DTP":
+        {
+        Type":"recursive"
+        }
+        }
+    }
 	
   
 ===================
