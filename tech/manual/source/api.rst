@@ -124,16 +124,16 @@ On success, the call to this endpoint will return with 200 and the following bod
   	"id": "<NodeId>",
   	"cluster-peers": [
 		"cluster_peers_addresses": [],
-		"version":	,
-		"commit":	,
-		"rpc_protocol_version":	,
-		"error":	,
+		"version": "<string>",
+		"commit": "<string>",
+		"rpc_protocol_version": "<string>",
+		"error": "<string>",
 		"ipfs": {
-			"id":	,
+			"id": "<string>",
 			"addresses": [],
-			"error": ,
+			"error": "<string>",
 		},
-		"peername":	,
+		"peername": "<string>",
   	]
   }
 
@@ -214,94 +214,97 @@ On success, the call to this endpoint will return with 200 and the following bod
 
 .. code-block:: json
 
-  {
-  	"id": "<NodeId>",
-	"addresses": [],
-  	"cluster-peers": [],
-	"cluster_peers_addresses": [],
-	"version":	,
-	"commit":	,
-	"rpc_protocol_version":	,
-	"error":	,
-	"ipfs": {
-		"id":	,
-		"addresses": []	,
-		"error": ,
-	},
-	"peername":	,  
-  }
+	[
+	  {
+		"id": "<NodeId>",
+		"addresses": [],
+		"cluster-peers": [],
+		"cluster_peers_addresses": [],
+		"version": "<string>",
+		"commit": "<string>",
+		"rpc_protocol_version": "<string>",
+		"error": "<string>",
+		"ipfs": {
+			"id": "<string>",
+			"addresses": []	,
+			"error": "<string>",
+		},
+		"peername": "<string>", 
+	  }
+	]
   
 Example: curl http://10.10.165.11:9094/peers
 
 .. code-block:: json
 
-
-  {
-    "id": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-    "addresses": [
-      "/p2p-circuit/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-      "/ip4/127.0.0.1/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-      "/ip4/10.10.165.11/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-      "/ip4/58.246.225.150/tcp/23868/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ"
-    ],
-    "cluster_peers": [
-      "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-      "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
-    ],
-    "cluster_peers_addresses": [
-      "/p2p-circuit/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
-      "/ip4/127.0.0.1/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
-      "/ip4/10.10.165.12/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
-    ],
-    "version": "0.7.0+git13a161f056792cfb50c1ef53b6688716a211381f",
-    "commit": "",
-    "rpc_protocol_version": "/hivecluster/0.7/rpc",
-    "error": "",
-    "ipfs": {
-      "id": "QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
-      "addresses": [
-        "/ip4/127.0.0.1/tcp/4001/ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
-        "/ip4/10.10.165.11/tcp/4001/ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
-        "/ip6/::1/tcp/4001/ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
-        "/ip4/58.246.225.150/tcp/43114/ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG"
-      ],
-      "error": ""
-    },
-    "peername": "localhost.localdomain"
-  },
-  {
-    "id": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
-    "addresses": [
-      "/p2p-circuit/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
-      "/ip4/127.0.0.1/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
-      "/ip4/10.10.165.12/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
-    ],
-    "cluster_peers": [
-      "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-      "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
-    ],
-    "cluster_peers_addresses": [
-      "/ip4/10.10.165.11/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-      "/p2p-circuit/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-      "/ip4/127.0.0.1/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-      "/ip4/58.246.225.150/tcp/23868/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ"
-    ],
-    "version": "0.7.0+git13a161f056792cfb50c1ef53b6688716a211381f",
-    "commit": "",
-    "rpc_protocol_version": "/hivecluster/0.7/rpc",
-    "error": "",
-    "ipfs": {
-      "id": "QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3",
-      "addresses": [
-        "/ip4/127.0.0.1/tcp/4001/ipfs/QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3",
-        "/ip4/10.10.165.12/tcp/4001/ipfs/QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3",
-        "/ip6/::1/tcp/4001/ipfs/QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3"
-      ],
-      "error": ""
-    },
-    "peername": "localhost.localdomain"
-  }
-
+	[
+	  {
+		"id": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		"addresses": [
+		  "/p2p-circuit/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "/ip4/127.0.0.1/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "/ip4/10.10.165.11/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "/ip4/58.246.225.150/tcp/23868/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ"
+		],
+		"cluster_peers": [
+		  "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
+		],
+		"cluster_peers_addresses": [
+		  "/p2p-circuit/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+		  "/ip4/127.0.0.1/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+		  "/ip4/10.10.165.12/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
+		],
+		"version": "0.7.0+git13a161f056792cfb50c1ef53b6688716a211381f",
+		"commit": "",
+		"rpc_protocol_version": "/hivecluster/0.7/rpc",
+		"error": "",
+		"ipfs": {
+		  "id": "QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
+		  "addresses": [
+			"/ip4/127.0.0.1/tcp/4001/ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
+			"/ip4/10.10.165.11/tcp/4001/ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
+			"/ip6/::1/tcp/4001/ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
+			"/ip4/58.246.225.150/tcp/43114/ipfs/QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG"
+		  ],
+		  "error": ""
+		},
+		"peername": "localhost.localdomain"
+	  },
+	  
+	  {
+		"id": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+		"addresses": [
+		  "/p2p-circuit/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+		  "/ip4/127.0.0.1/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+		  "/ip4/10.10.165.12/tcp/9096/ipfs/QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
+		],
+		"cluster_peers": [
+		  "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn"
+		],
+		"cluster_peers_addresses": [
+		  "/ip4/10.10.165.11/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "/p2p-circuit/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "/ip4/127.0.0.1/tcp/9096/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "/ip4/58.246.225.150/tcp/23868/ipfs/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ"
+		],
+		"version": "0.7.0+git13a161f056792cfb50c1ef53b6688716a211381f",
+		"commit": "",
+		"rpc_protocol_version": "/hivecluster/0.7/rpc",
+		"error": "",
+		"ipfs": {
+		  "id": "QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3",
+		  "addresses": [
+			"/ip4/127.0.0.1/tcp/4001/ipfs/QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3",
+			"/ip4/10.10.165.12/tcp/4001/ipfs/QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3",
+			"/ip6/::1/tcp/4001/ipfs/QmTcTuPCjkD8JwJmzYrERZNvn3ACyDwE78RbXuWXzozkY3"
+		  ],
+		  "error": ""
+		},
+		"peername": "localhost.localdomain"
+	  }
+	]
 
 ===================
 /peers/{peerID}
@@ -343,12 +346,14 @@ Remove a cluster peer from the cluster.
 
 On success, the call to this endpoint will return with 200.
 
-Example: http://i.storswift.com:9194/peers/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ
+Example: curl -v -X DELETE http://i.storswift.com:9194/peers/QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ
 
 .. code-block:: json
 
+	status code 204 NO CONTENT
 
-	
+	*peer removed from Raft: QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7CN consensus.go:382*
+
 ===================
 /pins
 ===================
@@ -395,48 +400,57 @@ On success, the call to this endpoint will return with 200.
 
 .. code-block:: json
 
-  {
-  	"Cid": "<string>",
-  	"PinStatus": {
-  		"Ok": "<bool>",
-  		"BadNodes": [{
-  			"Cid": "<string>",
-  			"Err": "<string>"
-  		}]
-  	}
-  } 
-
+	[
+	  {
+		"Cid": "<string>",
+		"peer_map": {
+			"Peer ID String" {
+				"cid": "<string>",
+				"peer": "<string>",
+				"peername": "<string>",
+				"status": "<string>",
+				"timestamp": "<string>",
+				"error": "<string>"
+				
+		},
+		{
+			...
+		},
+		...
+	  } 
+	]
+	  
 Example: curl http://10.10.165.11:9094/pins
 
 .. code-block:: json
 
-[
-  {
-    "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-    "peer_map": {
-      "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
-        "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-        "peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-        "peername": "localhost.localdomain",
-        "status": "pinned",
-        "timestamp": "2019-01-07T07:46:34Z",
-        "error": ""
-      },
-      "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn": {
-        "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-        "peer": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
-        "peername": "localhost.localdomain",
-        "status": "pinned",
-        "timestamp": "2019-01-08T06:46:59Z",
-        "error": ""
-      }
-    }
-  }
-]
+	[
+	  {
+		"cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+		"peer_map": {
+		  "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
+			"cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+			"peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+			"peername": "localhost.localdomain",
+			"status": "pinned",
+			"timestamp": "2019-01-07T07:46:34Z",
+			"error": ""
+		  },
+		  "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn": {
+			"cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+			"peer": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+			"peername": "localhost.localdomain",
+			"status": "pinned",
+			"timestamp": "2019-01-08T06:46:59Z",
+			"error": ""
+		  }
+		}
+	  }
+	]
 
 
 =============
-/pins/sync
+/pins/{CID}/sync
 =============
 Sync local status from IPFS
 
@@ -477,20 +491,30 @@ On success, the call to this endpoint will return with 200.
 
 .. code-block:: json
 
-  {
-  	"Cid": "<string>",
-  	"PinStatus": {
-  		"Ok": "<bool>",
-  		"BadNodes": [{
-  			"Cid": "<string>",
-  			"Err": "<string>"
-  		}]
-  	}
-  }
+	[
+	  {
+		"Cid": "<string>",
+		"peer_map": {
+			"Peer ID String" {
+				"cid": "<string>",
+				"peer": "<string>",
+				"peername": "<string>",
+				"status": "<string>",
+				"timestamp": "<string>",
+				"error": "<string>"
+				
+		},
+		{
+			...
+		},
+		...
+	  } 
+	]
 
-Example: curl http://10.10.165.11:9094/pins/sync
+Example: curl -X POST  http://10.10.165.11:9094/pins/QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF/sync
 
 .. code-block:: json
+
 GET
 
     {
@@ -500,66 +524,28 @@ GET
 	
 POST
 
-	[]
+	{
+	  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+	  "peer_map": {
+		"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
+		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+		  "peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "peername": "localhost.localdomain",
+		  "status": "pinned",
+		  "timestamp": "2019-01-07T07:46:34Z",
+		  "error": ""
+		},
+		"QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn": {
+		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+		  "peer": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+		  "peername": "localhost.localdomain",
+		  "status": "pinned",
+		  "timestamp": "2019-01-08T06:46:59Z",
+		  "error": ""
+		}
+	  }
+	}
 	
-================
-/pins/{cid}/sync
-================
-Attempt to re-pin/unpin CIDs in error state
-
-:METHOD: 
-  POST
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - cid
-     - string
-     - no
-     - the object CID that need sync.
-
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-On success, the call to this endpoint will return with 200.
-
-.. code-block:: json
-
-  {
-  	"Cid": "<string>",
-  	"PinStatus": {
-  		"Ok": "<bool>",
-  		"BadNodes": [{
-  			"Cid": "<string>",
-  			"Err": "<string>"
-  		}]
-  	}
-  }
-
-Example:
-
-.. code-block:: json
-
-
 
 ====================
 /pins/{cid}/recover
@@ -603,17 +589,53 @@ On success, the call to this endpoint will return with 200.
 
 .. code-block:: json
 
-  {
-  	"Cid": "<string>",
-  	"PinStatus": {
-  		"Ok": "<bool>",
-  		"BadNodes": [{
-  			"Cid": "<string>",
-  			"Err": "<string>"
-  		}]
-  	}
-  }
+	[
+	  {
+		"Cid": "<string>",
+		"peer_map": {
+			"Peer ID String" {
+				"cid": "<string>",
+				"peer": "<string>",
+				"peername": "<string>",
+				"status": "<string>",
+				"timestamp": "<string>",
+				"error": "<string>"
+				
+		},
+		{
+			...
+		},
+		...
+	  } 
+	]
+  
+Example: curl -X POST http://10.10.165.11:9094/pins/QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF/recover
 
+.. code-block:: json
+
+	{
+	  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+	  "peer_map": {
+		"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
+		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+		  "peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+		  "peername": "localhost.localdomain",
+		  "status": "pinned",
+		  "timestamp": "2019-01-07T07:46:34Z",
+		  "error": ""
+		},
+		"QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn": {
+		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+		  "peer": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
+		  "peername": "localhost.localdomain",
+		  "status": "pinned",
+		  "timestamp": "2019-01-08T06:46:59Z",
+		  "error": ""
+		}
+	  }
+	}
+  
+  
 ================
 /pins/recover
 ================
@@ -656,20 +678,58 @@ On success, the call to this endpoint will return with 200.
 
 .. code-block:: json
 
-  {
-  	"Cid": "<string>",
-  	"PinStatus": {
-  		"Ok": "<bool>",
-  		"BadNodes": [{
-  			"Cid": "<string>",
-  			"Err": "<string>"
-  		}]
-  	}
-  }
+	[
+	  {
+		"Cid": "<string>",
+		"peer_map": {
+			"Peer ID String" {
+				"cid": "<string>",
+				"peer": "<string>",
+				"peername": "<string>",
+				"status": "<string>",
+				"timestamp": "<string>",
+				"error": "<string>"
+				
+		},
+		{
+			...
+		},
+		...
+	  } 
+	]
 
-Example: curl http://i.storswift.com:9194/pins/recover
+Example: curl -X POST http://10.10.165.11:9094/pins/recover?local=true
 
 .. code-block:: json
+
+	[
+	  {
+		"cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+		"peer_map": {
+		  "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
+			"cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+			"peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+			"peername": "localhost.localdomain",
+			"status": "pinned",
+			"timestamp": "2019-01-07T07:46:34Z",
+			"error": ""
+		  }
+		}
+	  },
+	  {
+		"cid": "QmULKig5Fxrs2sC4qt9nNduucXfb92AFYQ6Hi3YRqDmrYC",
+		"peer_map": {
+		  "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
+			"cid": "QmULKig5Fxrs2sC4qt9nNduucXfb92AFYQ6Hi3YRqDmrYC",
+			"peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
+			"peername": "localhost.localdomain",
+			"status": "pinned",
+			"timestamp": "2019-01-08T07:16:31Z",
+			"error": ""
+		  }
+		}
+	  }
+	]
 
 
 ======================
@@ -815,6 +875,16 @@ On success, the call to this endpoint will return with 200.
   	],
   	"Progress": "<int>"
   }
+  
+Example:   curl "http://i.storswift.com:9195/api/v0/pin/add?arg=QmYZmegdpcRzVa2JQskN8trD8XUvdvd9FqSATRXpGr1DTP"
+  
+.. code-block:: json
+  
+  {
+	"Pins":[
+		"QmYZmegdpcRzVa2JQskN8trD8XUvdvd9FqSATRXpGr1DTP"
+	]
+  }
 
 ===================
 /api/v0/file/pin/ls
@@ -871,6 +941,19 @@ On success, the call to this endpoint will return with 200.
   	}
   }
 
+.. code-block:: json  
+  
+Example: curl "http://i.storswift.com:9195/api/v0/pin/ls"
+  
+	{
+		"Keys": {
+			"QmYZmegdpcRzVa2JQskN8trD8XUvdvd9FqSATRXpGr1DTP": {
+					"Type":"recursive"
+			}
+		}
+	}
+	
+  
 ===================
 /api/v0/file/pin/rm
 ===================
@@ -920,6 +1003,18 @@ On success, the call to this endpoint will return with 200.
   	]
   }
 
+.. code-block:: json
+
+Example: curl http://i.storswift.com:9195/api/v0/pin/rm?arg=QmYZmegdpcRzVa2JQskN8trD8XUvdvd9FqSATRXpGr1DTP
+
+.. code-block:: json
+
+	{
+	  "Pins": [
+		"QmYZmegdpcRzVa2JQskN8trD8XUvdvd9FqSATRXpGr1DTP"
+	  ]
+	} 
+ 
 =================
 /api/v0/file/add
 =================
@@ -983,7 +1078,6 @@ Add a file or directory to cluster.
   {
       "Name": "<string>",
       "Hash": "<string>",
-      "Bytes": "<int64>",
       "Size": "<string>"
   }
 
@@ -1144,19 +1238,19 @@ Example: http://10.10.165.11:9095/api/v0/file/ls?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpK
 
 .. code-block:: json
 
-{
-  "Arguments": {
-    "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
-  },
-  "Objects": {
-    "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF": {
-      "Hash": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-      "Size": 7,
-      "Type": "File",
-      "Links": null
-    }
-  }
-}
+	{
+	  "Arguments": {
+		"QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
+	  },
+	  "Objects": {
+		"QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF": {
+		  "Hash": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
+		  "Size": 7,
+		  "Type": "File",
+		  "Links": null
+		}
+	  }
+	}
 
 ======================
 /api/v0/files/cp
@@ -1212,7 +1306,7 @@ On success, the call to this endpoint will return with 200 or the following opti
   
   
 
-.. http://127.0.0.1:9095/api/v0/files/cp?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&source=/ipfs/QmcFUHo1DBpydnTSeuXszKgQqnXQCJq6Wu1BUdzEfuRahM&dest=/002
+.. http://i.storswift.com:9195/api/v0/files/cp?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&source=/ipfs/QmcFUHo1DBpydnTSeuXszKgQqnXQCJq6Wu1BUdzEfuRahM&dest=/002
 
 ======================
 /api/v0/files/flush
@@ -1263,7 +1357,7 @@ On success, the call to this endpoint will return with 200 or the following opti
     "Message": "<string>"
   }
 
-.. http://127.0.0.1:9095/api/v0/files/flush?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&path=/001
+.. http://i.storswift.com:9195/api/v0/files/flush?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&path=/001
 
 ======================
 /api/v0/files/ls
@@ -1318,7 +1412,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   		}]
   	}
 
-Example: curl http://127.0.0.1:9095/api/v0/files/ls?uid=uid-f996965a-f916-463c-8d4e-f809b590b783&path=/
+Example: curl http://i.storswift.com:9195/api/v0/files/ls?uid=uid-f996965a-f916-463c-8d4e-f809b590b783&path=/
 
 .. code-block:: json
 
@@ -1622,9 +1716,6 @@ On success, the call to this endpoint will return with 200 and the following bod
   	"CumulativeSize": "<uint64>",
   	"Blocks": "<int>",
   	"Type": "<string>",
-  	"WithLocality": "<bool>",
-  	"Local": "<bool>",
-  	"SizeLocal": "<uint64>"
   }
 
 Example: curl http://10.10.165.11:9095/api/v0/files/stat?arg=/
@@ -1771,15 +1862,14 @@ On success, the call to this endpoint will return with 200 and the following bod
         "Value": "<string>"
     }
 
-Example: curl http://i.storswift.com:9195/api/v0/name/publish?arg=.
+Example: curl http://i.storswift.com:9195/api/v0/name/publish?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF
 
 .. code-block:: json
 
-    {
-      "Message": "invalid 'ipfs ref' path",
-      "Code": 0,
-      "Type": "error"
-    }
+	{
+	  "Name": "QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
+	  "Value": "/ipfs/QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
+	}
     
 ======================
 /api/v0/message/pub
