@@ -949,10 +949,10 @@ On success, the call to this endpoint will return with 200.
   	}
   }
 
-.. code-block:: json  
-  
 Example: curl "http://i.storswift.com:9195/api/v0/pin/ls"
-  
+
+.. code-block:: json  
+    
     {
         "Keys":
         {
@@ -962,8 +962,7 @@ Example: curl "http://i.storswift.com:9195/api/v0/pin/ls"
         }
         }
     }
-	
-  
+
 ===================
 /api/v0/file/pin/rm
 ===================
@@ -1063,7 +1062,6 @@ Add a file or directory to cluster.
 
    * - “path” is of file type. This endpoint expects a file in the body of the request as ‘multipart/form-data’.
 
-
 .. list-table:: Response
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1157,32 +1155,30 @@ Download files from the cluster.
 
 Example: curl -v "http://i.storswift.com:9195/api/v0/get?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
 
+::
 
-
-* About to connect() to i.storswift.com port 9195 (#0)
-*   Trying 58.246.225.150...
-* Connected to i.storswift.com (58.246.225.150) port 9195 (#0)
-> GET /api/v0/get?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF HTTP/1.1
-> User-Agent: curl/7.29.0
-> Host: i.storswift.com:9195
-> Accept: */*
-> 
-< HTTP/1.1 200 OK
-< Access-Control-Allow-Headers: X-Stream-Output, X-Chunked-Output, X-Content-Length
-< Access-Control-Expose-Headers: X-Stream-Output, X-Chunked-Output, X-Content-Length
-< Content-Type: text/plain
-< Date: Tue, 08 Jan 2019 06:59:16 GMT
-< Server: go-ipfs/0.4.18
-< Trailer: X-Stream-Error
-< Vary: Origin
-< X-Content-Length: 15
-< X-Stream-Output: 1
-< Transfer-Encoding: chunked
-< 
-QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF0000644000000000000000000000000713415045104017157 
-0ustar0000000000000000conf.py* Connection #0 to host i.storswift.com left intact
-
-	 
+  * About to connect() to i.storswift.com port 9195 (#0)
+  *   Trying 58.246.225.150...
+  * Connected to i.storswift.com (58.246.225.150) port 9195 (#0)
+  > GET /api/v0/get?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF HTTP/1.1
+  > User-Agent: curl/7.29.0
+  > Host: i.storswift.com:9195
+  > Accept: */*
+  > 
+  < HTTP/1.1 200 OK
+  < Access-Control-Allow-Headers: X-Stream-Output, X-Chunked-Output, X-Content-Length
+  < Access-Control-Expose-Headers: X-Stream-Output, X-Chunked-Output, X-Content-Length
+  < Content-Type: text/plain
+  < Date: Tue, 08 Jan 2019 06:59:16 GMT
+  < Server: go-ipfs/0.4.18
+  < Trailer: X-Stream-Error
+  < Vary: Origin
+  < X-Content-Length: 15
+  < X-Stream-Output: 1
+  < Transfer-Encoding: chunked
+  < 
+  QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF0000644000000000000000000000000713415045104017157 
+  0ustar0000000000000000conf.py* Connection #0 to host i.storswift.com left intact
 	 
 ======================
 /api/v0/file/ls
@@ -1739,8 +1735,7 @@ Example: curl http://10.10.165.11:9095/api/v0/files/stat?arg=/
 	  "Blocks": 2,
 	  "Type": "directory"
 	}
-  
-  
+
 ======================
 /api/v0/files/write
 ======================
@@ -1777,15 +1772,11 @@ Write to a mutable file in a given filesystem.
    * - truncate
      - bool
      - yes
-     - Truncate the file to size zero before writing. 
-   * - truncate
-     - bool
-     - yes
-     - Truncate the file to size zero before writing. 
+     - Truncate the file to size zero before writing.
    * - count
      - int
      - no
-     - Maximum number of bytes to read. 
+     - Maximum number of bytes to read.
 
 .. list-table:: Request Body
    :widths: 80
