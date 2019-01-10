@@ -753,6 +753,9 @@ the PeerID is a virtual IPFS peer ID.
    - Required
    - Description
 
+:METHOD:
+  GET/POST
+   
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
  :header-rows: 1
@@ -799,6 +802,9 @@ Log in to Hive Cluster using the UID you created earlier.
    - yes
    - The UID you created earlier.
 
+:METHOD:
+  GET/POST   
+   
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
  :header-rows: 1
@@ -832,6 +838,9 @@ Example: http://127.0.0.1:9095/api/v0/uid/login?uid=uid-124a5834-e468-444f-a5ad-
 /api/v0/file/pin/add
 ====================
 Pin objects in the cluster
+
+:METHOD:
+  GET/POST
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -897,6 +906,9 @@ Example:   curl "http://i.storswift.com:9195/api/v0/pin/add?arg=QmYZmegdpcRzVa2J
 ===================
 List objects that pinned to the cluster.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -968,6 +980,9 @@ Example: curl "http://i.storswift.com:9195/api/v0/pin/ls"
 ===================
 Remove pinned objects from the cluster.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1029,6 +1044,9 @@ Example: curl http://i.storswift.com:9195/api/v0/pin/rm?arg=QmYZmegdpcRzVa2JQskN
 =================
 Add a file or directory to cluster.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1105,6 +1123,9 @@ Example: curl -F file=conf.py "http://i.storswift.com:9195/api/v0/add?recursive=
 =================
 Download files from the cluster.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1185,6 +1206,9 @@ Example: curl -v "http://i.storswift.com:9195/api/v0/get?arg=QmXbB1Ad9TWt9SqcyiG
 ======================
 List directory contents for Unix filesystem objects.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1263,6 +1287,9 @@ Example: http://10.10.165.11:9095/api/v0/file/ls?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpK
 ======================
 Copy files among clusters.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1319,6 +1346,9 @@ On success, the call to this endpoint will return with 200 or the following opti
 ======================
 Flush a given path’s data to cluster.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1370,6 +1400,9 @@ On success, the call to this endpoint will return with 200 or the following opti
 ======================
 List directories in the private mutable namespace.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1444,6 +1477,9 @@ Example: curl http://i.storswift.com:9195/api/v0/files/ls?uid=uid-f996965a-f916-
 =========================
 Create directories.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1502,6 +1538,9 @@ Example curl http://10.10.165.11:9095/api/v0/files/mkdir?arg=/suxx
 ======================
 Move files.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1555,6 +1594,9 @@ On success, the call to this endpoint will return with 200 or the following opti
 ======================
 Read a file in a given path.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1611,6 +1653,9 @@ On success, the call to this endpoint will return with 200 or the following opti
 ======================
 Remove a file.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1664,6 +1709,9 @@ On success, the call to this endpoint will return with 200 or the following opti
 ======================
 Display file status.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1741,6 +1789,9 @@ Example: curl http://10.10.165.11:9095/api/v0/files/stat?arg=/
 ======================
 Write to a mutable file in a given filesystem.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
    :widths: 15 10 10 30
    :header-rows: 1
@@ -1816,6 +1867,9 @@ On success, the call to this endpoint will return with 200 or the following opti
 ======================
 Publish user context file or directory to public.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
  :widths: 15 10 10 30
  :header-rows: 1
@@ -1877,6 +1931,9 @@ Example: curl http://i.storswift.com:9195/api/v0/name/publish?arg=QmXbB1Ad9TWt9S
 ======================
 Publish a message to a given pubsub topic.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
  :widths: 15 10 10 30
  :header-rows: 1
@@ -1924,6 +1981,9 @@ On success, the call to this endpoint will return with 200 or the following opti
 ======================
 Subscribe to message to a given topic.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
  :widths: 15 10 10 30
  :header-rows: 1
@@ -1984,6 +2044,9 @@ On success, the call to this endpoint will return with 200 and the following bod
 
 Show cluster version information.
 
+:METHOD:
+  GET/POST
+  
 .. list-table:: Arguments
  :widths: 15 10 10 30
  :header-rows: 1
