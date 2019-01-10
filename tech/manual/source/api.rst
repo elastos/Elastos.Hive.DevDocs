@@ -449,9 +449,9 @@ Example: curl http://10.10.165.11:9094/pins
 	]
 
 
-=============
+=================
 /pins/{CID}/sync
-=============
+=================
 Sync local status from IPFS
 
 :METHOD: 
@@ -649,6 +649,10 @@ Attempt to re-pin/unpin CIDs in error state
      - string
      - no
      - the object CID that need sync.
+   * - local
+     - bool
+     - no
+     - sync
 
 .. list-table:: HTTP Response
    :widths: 15 10 10 30
@@ -723,6 +727,15 @@ Example: curl -X POST http://10.10.165.11:9094/pins/recover?local=true
 		}
 	  }
 	]
+	
+Example without local=true : curl -X POST http://10.10.165.11:9094/pins/recover
+
+.. code-block:: json
+
+	{
+	  "code": 400,
+	  "message": "only requests with parameter local=true are supported"
+	}	
 
 
 ======================
