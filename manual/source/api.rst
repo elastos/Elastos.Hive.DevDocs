@@ -412,9 +412,9 @@ On success, the call to this endpoint will return with 200.
 				"status": "<string>",
 				"timestamp": "<string>",
 				"error": "<string>"
-				
-		},
-	  }
+		    },
+	    }
+      }
 	]
 	  
 Example: curl http://10.10.165.11:9094/pins
