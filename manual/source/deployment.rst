@@ -1,3 +1,5 @@
+:orphan:
+
 Hive Cluster Deployment
 ========================================
 About Hive Cluster, which is a toolchain that allows multiple IPFS nodes to work together to manage the same IPFS pinset. We called  it Hive Cluster Group, which are IPFS nodes work together. In Hive Cluster, the most purpose of using it is to build up Hive Cluster group.

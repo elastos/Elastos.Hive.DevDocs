@@ -1,7 +1,7 @@
 Elastos.NET.Hive.DevDocs
 =============================
 
-##Introduction
+## Introduction
 
 Hive is the decentralized storage layer of Elastos.  Hive is designed for large scale storage systems, based on the IPFS and IPFS Cluster projects. The purpose of this repository is to collect all documents over the whole entire developing process of Hive project.
 
@@ -10,9 +10,9 @@ The layout of directory structure is defined as below:
 * manual: Introduce how to use Elastos Hive. There are API references and deployment guides for the Hive Project. 
 * tech: There are some design documents and technical references for the Hive project.
 
-##Directories
+## Directories
 
-###manual
+### manual
 
 This directory contains several types of important documents:
 
@@ -26,6 +26,6 @@ Please enter the directory of manual, and run this command to create the HTML fo
 $ make html
 ```
 
-###tech
+### tech
 
 Some design documents and technical materials for Hive are included in this directory. From the documents, we can understand the architecture of Hive and know how it works.
