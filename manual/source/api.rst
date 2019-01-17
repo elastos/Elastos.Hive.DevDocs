@@ -1,3 +1,5 @@
+:orphan:
+
 Cluster Commands & API Reference
 ========================================
 
@@ -121,20 +123,22 @@ On success, the call to this endpoint will return with 200 and the following bod
 .. code-block:: json
 
 	{
-	"id": "<NodeId>",
-	"cluster-peers": [
-		"cluster_peers_addresses": [],
-		"version": "<string>",
-		"commit": "<string>",
-		"rpc_protocol_version": "<string>",
-		"error": "<string>",
-		"ipfs": {
-			"id": "<string>",
-			"addresses": [],
-			"error": "<string>",
-		},
-		"peername": "<string>",
-	]
+      "id": "<NodeId>",
+      "cluster-peers":
+      [
+        "cluster_peers_addresses": [],
+        "version": "<string>",
+        "commit": "<string>",
+        "rpc_protocol_version": "<string>",
+        "error": "<string>",
+        "ipfs":
+        {
+          "id": "<string>",
+          "addresses": [],
+          "error": "<string>",
+        },
+        "peername": "<string>",
+      ]
 	}
 
 Example: curl http://10.10.165.11:9094/id
@@ -224,10 +228,11 @@ On success, the call to this endpoint will return with 200 and the following bod
 		"commit": "<string>",
 		"rpc_protocol_version": "<string>",
 		"error": "<string>",
-		"ipfs": {
-			"id": "<string>",
-			"addresses": []	,
-			"error": "<string>",
+		"ipfs":
+		{
+		  "id": "<string>",
+		  "addresses": []	,
+		  "error": "<string>",
 		},
 		"peername": "<string>", 
 	  }
@@ -403,22 +408,20 @@ On success, the call to this endpoint will return with 200.
 	[
 	  {
 		"Cid": "<string>",
-		"peer_map": {
-			"Peer ID String" {
-				"cid": "<string>",
-				"peer": "<string>",
-				"peername": "<string>",
-				"status": "<string>",
-				"timestamp": "<string>",
-				"error": "<string>"
-				
-		},
+		"peer_map":
 		{
-			...
-		},
-		...
-	  } 
-	]
+          "Peer ID String"
+          {
+			"cid": "<string>",
+			"peer": "<string>",
+			"peername": "<string>",
+			"status": "<string>",
+			"timestamp": "<string>",
+			"error": "<string>"
+		  }
+	    }
+      }
+    ]
 	  
 Example: curl http://10.10.165.11:9094/pins
 
@@ -494,21 +497,19 @@ On success, the call to this endpoint will return with 200.
 	[
 	  {
 		"Cid": "<string>",
-		"peer_map": {
-			"Peer ID String" {
-				"cid": "<string>",
-				"peer": "<string>",
-				"peername": "<string>",
-				"status": "<string>",
-				"timestamp": "<string>",
-				"error": "<string>"
-				
-		},
+		"peer_map":
 		{
-			...
-		},
-		...
-	  } 
+		  "Peer ID String"
+          {
+			"cid": "<string>",
+			"peer": "<string>",
+			"peername": "<string>",
+			"status": "<string>",
+			"timestamp": "<string>",
+			"error": "<string>"
+		  }
+	    }
+      }
 	]
 
 Example: curl -X POST  http://10.10.165.11:9094/pins/QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF/sync
@@ -585,20 +586,18 @@ On success, the call to this endpoint will return with 200.
 	[
 	  {
 		"Cid": "<string>",
-		"peer_map": {
-			"Peer ID String" {
-				"cid": "<string>",
-				"peer": "<string>",
-				"peername": "<string>",
-				"status": "<string>",
-				"timestamp": "<string>",
-				"error": "<string>"
-				
-		},
+		"peer_map":
 		{
-			...
-		},
-		...
+		  "Peer ID String"
+		  {
+			"cid": "<string>",
+			"peer": "<string>",
+			"peername": "<string>",
+			"status": "<string>",
+			"timestamp": "<string>",
+			"error": "<string>"
+		  }
+		}
 	  } 
 	]
   
@@ -678,21 +677,19 @@ On success, the call to this endpoint will return with 200.
 	[
 	  {
 		"Cid": "<string>",
-		"peer_map": {
-			"Peer ID String" {
-				"cid": "<string>",
-				"peer": "<string>",
-				"peername": "<string>",
-				"status": "<string>",
-				"timestamp": "<string>",
-				"error": "<string>"
-				
-		},
+		"peer_map":
 		{
-			...
-		},
-		...
-	  } 
+          "Peer ID String"
+          {
+			"cid": "<string>",
+			"peer": "<string>",
+			"peername": "<string>",
+			"status": "<string>",
+			"timestamp": "<string>",
+			"error": "<string>"
+		  }
+		}
+	  }
 	]
 
 Example: curl -X POST http://10.10.165.11:9094/pins/recover?local=true
@@ -968,10 +965,10 @@ Example: curl "http://i.storswift.com:9195/api/v0/pin/ls"
     {
         "Keys":
         {
-        "QmYZmegdpcRzVa2JQskN8trD8XUvdvd9FqSATRXpGr1DTP":
-        {
-        Type":"recursive"
-        }
+            "QmYZmegdpcRzVa2JQskN8trD8XUvdvd9FqSATRXpGr1DTP":
+            {
+                Type":"recursive"
+            }
         }
     }
 
