@@ -21,7 +21,8 @@ To build document, download sources using Git at first:
 $ git clone https://github.com/elastos/Elastos.NET.Hive.DevDocs
 ```
 
-####1. Install Pre-Requirements
+#### 1. Install Pre-Requirements
+
 And you also need to install necessary packages with following commands  before building:
 
 ```shell
@@ -32,7 +33,7 @@ $ sudo python /tmp/get-pip.py
 $ sudo pip install breathe
 ```
 
-####2. Build
+#### 2. Build
 
 Then, **cd** to **manul** subdirectory to make build process as below:
 
@@ -63,7 +64,7 @@ There are two categories of content in document by now:
 
 Some design documents and technical materials for Hive are included in this directory. From the documents, we can understand the architecture of Hive and know how it works.
 
-###Contribution
+### Contribution
 
 We welcome contributions to enrich docouments about Elastos Hive Projects.
 
