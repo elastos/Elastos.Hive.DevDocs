@@ -3,14 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to hive.cluster's documentation!
+Elastos Hive Cluster Documentation
 ========================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-Hive.Cluster is a decentralized File Storage Service that based on IPFS cluster.
+Hive Cluster is a decentralized File Storage Service that is based on IPFS cluster.
 
 
 API Reference
