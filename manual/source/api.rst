@@ -55,6 +55,7 @@ Index
 
 * :ref:`/api/v0/uid/new`
 * :ref:`/api/v0/uid/login`
+* :ref:`/api/v0/uid/info`
 * :ref:`/api/v0/file/pin/add`
 * :ref:`/api/v0/file/pin/ls`
 * :ref:`/api/v0/file/pin/rm`
@@ -845,6 +846,62 @@ Example: curl http://127.0.0.1:9095/api/v0/uid/login?uid=uid-b7edf82e-dd51-4adc-
 	  "UID": "uid-1c4f7ca3-b77f-42e7-82c7-2a8fdf017623",
 	  "PeerID": "QmYf9Q1SBnuzUYphpn6Bs1Zom3uz3qc12MinHseE3MyX9R"
 	}
+
+======================
+/api/v0/uid/info
+======================
+Get the uid information from server.
+
+.. list-table:: Arguments
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Arguments
+   - Type
+   - Required
+   - Description
+ * - uid
+   - string
+   - yes
+   - The UID you created earlier.
+
+:METHOD:
+  GET/POST   
+   
+.. list-table:: HTTP Response
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Argument
+   - Type
+   - Required
+   - Description
+ * - http error
+   - integer
+   - yes
+   - error code.
+ * - http body
+   - Json
+   - no
+   - Json string is following
+
+On success, the call to this endpoint will return with 200 and the following body:
+
+.. code-block:: json
+
+    {
+      "UID": "<string>",
+      "PeerID": "<string>"
+    }
+
+Example: curl http://127.0.0.1:9095/api/v0/uid/info?uid=uid-5b9745dc-7714-47ff-aa6c-4e817a39cfa6
+
+.. code-block:: json
+
+    {
+      "UID":"uid-5b9745dc-7714-47ff-aa6c-4e817a39cfa6",
+      "PeerID":"QmdSBdjRoJY7YQDWkT2XTYDToswcr8LHz1TfLpXVYhUiZK"
+    }
 
 ====================
 /api/v0/file/pin/add
