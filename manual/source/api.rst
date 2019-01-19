@@ -1898,10 +1898,10 @@ Publish user context file or directory to public.
    - string
    - no
    - Time duration that the record will be valid for. This accepts durations such as “300s”, “1.5h” or “2h45m”. Valid time units are “ns”, “us” (or “µs”), “ms”, “s”, “m”, “h”. Default: “24h”. Required: no.
- * - ipfs file object
+ * - path
    - string
    - yes
-   - the file object to be published.
+   - the file object(IPFS path) to be published.
  
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
