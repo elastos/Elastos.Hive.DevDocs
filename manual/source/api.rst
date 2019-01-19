@@ -55,6 +55,7 @@ Index
 
 * :ref:`/api/v0/uid/new`
 * :ref:`/api/v0/uid/login`
+* :ref:`/api/v0/uid/info`
 * :ref:`/api/v0/file/pin/add`
 * :ref:`/api/v0/file/pin/ls`
 * :ref:`/api/v0/file/pin/rm`
@@ -779,8 +780,15 @@ On success, the call to this endpoint will return with 200 and the following bod
         "PeerID": "<string>"
     }
 
-Example: http://10.10.165.11:9095/api/v0/uid/new
+Example: curl http://10.10.165.11:9095/api/v0/uid/new
 
+.. code-block:: json
+
+	{
+	  "UID": "uid-ef26d276-48c4-4371-b136-3c06d2d6ebab",
+	  "PeerID": "Qmawxf1opQr1873WwJdxidtpKSffM7R5knZbU9idb8rjEF"
+	}
+	
 ======================
 /api/v0/uid/login
 ======================
@@ -829,7 +837,71 @@ On success, the call to this endpoint will return with 200 and the following bod
       "PeerID": "<string>"
     }
 
-Example: http://127.0.0.1:9095/api/v0/uid/login?uid=uid-124a5834-e468-444f-a5ad-16d136a590df 
+Example: curl http://127.0.0.1:9095/api/v0/uid/login?uid=uid-b7edf82e-dd51-4adc-9def-8eb06f81630b
+
+.. code-block:: json
+
+	{
+	  "OldUID": "uid-b7edf82e-dd51-4adc-9def-8eb06f81630b",
+	  "UID": "uid-1c4f7ca3-b77f-42e7-82c7-2a8fdf017623",
+	  "PeerID": "QmYf9Q1SBnuzUYphpn6Bs1Zom3uz3qc12MinHseE3MyX9R"
+	}
+
+======================
+/api/v0/uid/info
+======================
+Get the uid information from server.
+
+.. list-table:: Arguments
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Arguments
+   - Type
+   - Required
+   - Description
+ * - uid
+   - string
+   - yes
+   - The UID you created earlier.
+
+:METHOD:
+  GET/POST   
+   
+.. list-table:: HTTP Response
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Argument
+   - Type
+   - Required
+   - Description
+ * - http error
+   - integer
+   - yes
+   - error code.
+ * - http body
+   - Json
+   - no
+   - Json string is following
+
+On success, the call to this endpoint will return with 200 and the following body:
+
+.. code-block:: json
+
+    {
+      "UID": "<string>",
+      "PeerID": "<string>"
+    }
+
+Example: curl http://127.0.0.1:9095/api/v0/uid/info?uid=uid-5b9745dc-7714-47ff-aa6c-4e817a39cfa6
+
+.. code-block:: json
+
+    {
+      "UID":"uid-5b9745dc-7714-47ff-aa6c-4e817a39cfa6",
+      "PeerID":"QmdSBdjRoJY7YQDWkT2XTYDToswcr8LHz1TfLpXVYhUiZK"
+    }
 
 ====================
 /api/v0/file/pin/add
@@ -1883,10 +1955,10 @@ Publish user context file or directory to public.
    - string
    - no
    - Time duration that the record will be valid for. This accepts durations such as “300s”, “1.5h” or “2h45m”. Valid time units are “ns”, “us” (or “µs”), “ms”, “s”, “m”, “h”. Default: “24h”. Required: no.
- * - ipfs file object
+ * - path
    - string
    - yes
-   - the file object to be published.
+   - the file object(IPFS path) to be published.
  
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
