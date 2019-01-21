@@ -56,11 +56,12 @@ Index
 * :ref:`/api/v0/uid/new`
 * :ref:`/api/v0/uid/login`
 * :ref:`/api/v0/uid/info`
-* :ref:`/api/v0/file/pin/add`
-* :ref:`/api/v0/file/pin/ls`
-* :ref:`/api/v0/file/pin/rm`
+* :ref:`/api/v0/pin/add`
+* :ref:`/api/v0/pin/ls`
+* :ref:`/api/v0/pin/rm`
 * :ref:`/api/v0/file/add`
 * :ref:`/api/v0/file/get`
+* :ref:`/api/v0/file/cat`
 * :ref:`/api/v0/file/ls`
 * :ref:`/api/v0/files/cp`
 * :ref:`/api/v0/files/flush`
@@ -904,7 +905,7 @@ Example: curl http://127.0.0.1:9095/api/v0/uid/info?uid=uid-5b9745dc-7714-47ff-a
     }
 
 ====================
-/api/v0/file/pin/add
+/api/v0/pin/add
 ====================
 Pin objects in the cluster
 
@@ -971,7 +972,7 @@ Example:   curl "http://i.storswift.com:9195/api/v0/pin/add?arg=QmYZmegdpcRzVa2J
   }
 
 ===================
-/api/v0/file/pin/ls
+/api/v0/pin/ls
 ===================
 List objects that pinned to the cluster.
 
@@ -1045,7 +1046,7 @@ Example: curl "http://i.storswift.com:9195/api/v0/pin/ls"
     }
 
 ===================
-/api/v0/file/pin/rm
+/api/v0/pin/rm
 ===================
 Remove pinned objects from the cluster.
 
@@ -1176,7 +1177,7 @@ Add a file or directory to cluster.
       "Size": "<string>"
   }
 
-Example: curl -F file=conf.py "http://i.storswift.com:9195/api/v0/add?recursive=true"
+Example: curl -F file=conf.py "http://i.storswift.com:9195/api/v0/file/add?recursive=true"
 
 .. code-block:: json
 
@@ -1190,7 +1191,7 @@ Example: curl -F file=conf.py "http://i.storswift.com:9195/api/v0/add?recursive=
 =================
 /api/v0/file/get
 =================
-Download files from the cluster.
+Download files from the hive cluster.
 
 :METHOD:
   GET/POST
@@ -1211,11 +1212,6 @@ Download files from the cluster.
      - string
      - no
      - The path where the output should be stored. Default: the endpoint current directory.
-   * - archive
-     - bool
-     - no
-     - Output a TAR archive.
-       Default: “false”. Required: no.
    * - compress
      - bool
      - no
@@ -1241,9 +1237,9 @@ Download files from the cluster.
    * - http body
      - text/plain
      - no
-     - This endpoint returns a `text/plain` response body.
+     - This endpoint returns a `text/plain` response body (a TAR archive).
 
-Example: curl -v "http://i.storswift.com:9195/api/v0/get?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
+Example: curl -v "http://i.storswift.com:9195/api/v0/file/get?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
 
 ::
 
@@ -1269,7 +1265,47 @@ Example: curl -v "http://i.storswift.com:9195/api/v0/get?arg=QmXbB1Ad9TWt9SqcyiG
   < 
   QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF0000644000000000000000000000000713415045104017157 
   0ustar0000000000000000conf.py* Connection #0 to host i.storswift.com left intact
-	 
+
+=================
+/api/v0/file/cat
+=================
+cat files content from the hive cluster
+
+:METHOD:
+  GET/POST
+  
+.. list-table:: Arguments
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - arg
+     - string
+     - yes
+     - The path to the file(s) to be download from the cluster.
+
+.. list-table:: Http Response
+   :widths: 15 10 10 30
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Required
+     - Description
+   * - http error
+     - integer
+     - yes
+     - error code. On success, the call to this endpoint will return with 200 and the following body:
+   * - http body
+     - text/plain
+     - no
+     - This endpoint returns a `text/plain` response body (a TAR archive).
+
+Example: curl -v "http://i.storswift.com:9195/api/v0/file/cat?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
+
 ======================
 /api/v0/file/ls
 ======================
