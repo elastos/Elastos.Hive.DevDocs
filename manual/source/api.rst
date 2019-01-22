@@ -1,5 +1,3 @@
-:orphan:
-
 Cluster Commands & API Reference
 ========================================
 
@@ -855,7 +853,7 @@ Example: curl http://127.0.0.1:9095/api/v0/uid/login?uid=x
 	{
 	  "Message": "IPFS unsuccessful: 500: no key named x was found"
 	}	
-=======
+
 ======================
 /api/v0/uid/info
 ======================
@@ -911,7 +909,6 @@ Example: curl http://127.0.0.1:9095/api/v0/uid/info?uid=uid-5b9745dc-7714-47ff-a
       "UID":"uid-5b9745dc-7714-47ff-aa6c-4e817a39cfa6",
       "PeerID":"QmdSBdjRoJY7YQDWkT2XTYDToswcr8LHz1TfLpXVYhUiZK"
     }
->>>>>>> 895e9f4d1007ec58a23cd17ca3fafd7a6eb3320a
 
 ====================
 /api/v0/file/pin/add
