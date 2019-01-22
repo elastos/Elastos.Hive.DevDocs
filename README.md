@@ -7,7 +7,7 @@ Elastos Hive is a basic service infrastructure that provide storage capabilities
 The main purpose of this repository to collect certain documents or developer guides about Hive storage and make a shortcut reference portal for community users.
 
 ### Layout
-The conent layout of this repository is structured as below:
+The content layout of this repository is structured as below:
 
 * manual: Http Restful APIs for Hive node/cluster, and guides about **HOWTO** deploy Hive node/cluster.
 * tech: Under hook technical documents.
@@ -35,7 +35,7 @@ $ sudo pip install breathe
 
 #### 2. Build
 
-Then, **cd** to **manul** subdirectory to make build process as below:
+Then, **cd** to **manual** subdirectory to make build process as below:
 
 ```shell
 $ cd YOUR-PATH-DEVDOCS/manual
@@ -66,7 +66,7 @@ Some design documents and technical materials for Hive are included in this dire
 
 ### Contribution
 
-We welcome contributions to enrich docouments about Elastos Hive Projects.
+We welcome contributions to enrich documents about Elastos Hive Projects.
 
 ### License
 
