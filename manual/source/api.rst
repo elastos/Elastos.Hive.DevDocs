@@ -846,6 +846,14 @@ Example: curl http://127.0.0.1:9095/api/v0/uid/login?uid=uid-b7edf82e-dd51-4adc-
 	  "PeerID": "QmYf9Q1SBnuzUYphpn6Bs1Zom3uz3qc12MinHseE3MyX9R"
 	}
 
+Example: curl http://127.0.0.1:9095/api/v0/uid/login?uid=x
+	
+.. code-block:: json
+
+	{
+	  "Message": "IPFS unsuccessful: 500: no key named x was found"
+	}	
+
 ====================
 /api/v0/file/pin/add
 ====================
@@ -1276,7 +1284,7 @@ On success, the call to this endpoint will return with 200 and the following bod
   	}
   }
   
-Example: http://10.10.165.11:9095/api/v0/file/ls?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF
+Example: curl http://10.10.165.11:9095/api/v0/file/ls?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF
 
 .. code-block:: json
 
@@ -1350,8 +1358,9 @@ On success, the call to this endpoint will return with 200 or the following opti
   }
   
   
+Example: curl http://i.storswift.com:9195/api/v0/files/cp?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&source=/ipfs/QmcFUHo1DBpydnTSeuXszKgQqnXQCJq6Wu1BUdzEfuRahM&dest=/002
 
-.. http://i.storswift.com:9195/api/v0/files/cp?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&source=/ipfs/QmcFUHo1DBpydnTSeuXszKgQqnXQCJq6Wu1BUdzEfuRahM&dest=/002
+
 
 ======================
 /api/v0/files/flush
@@ -1539,11 +1548,20 @@ On success, the call to this endpoint will return with 200 or the following opti
     "Message": "<string>"
   }
 
+Example curl http://10.10.165.11:9095/api/v0/files/mkdir?arg=/suxx&uid=uid-1c4f7ca3-b77f-42e7-82c7-2a8fdf017623
+
+.. code-block:: json
+
+  []
+	
 Example curl http://10.10.165.11:9095/api/v0/files/mkdir?arg=/suxx  
 
 .. code-block:: json
 
-	[]
+  {
+	"Message": "error reading request: /api/v0/files/mkdir?arg=/suxx"
+  }
+
   
 ======================
 /api/v0/files/mv
@@ -1601,6 +1619,20 @@ On success, the call to this endpoint will return with 200 or the following opti
     "Message": "<string>"
   }
 
+Example: curl http://10.10.165.11:9095/api/v0/files/mv  
+
+.. code-block:: json
+
+  {
+	"Message": "error reading request: /api/v0/files/mv"
+  }
+
+Example: curl http://10.10.165.11:9095/api/v0/files/mv?uid=uid-1c4f7ca3-b77f-42e7-82c7-2a8fdf017623&source=/dir1&dest=/dir2
+
+.. code-block:: json
+  
+  []
+  
 ======================
 /api/v0/files/read
 ======================
