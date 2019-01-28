@@ -1276,7 +1276,14 @@ Example: curl -v "http://i.storswift.com:9195/api/v0/get?arg=QmXbB1Ad9TWt9SqcyiG
   < 
   QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF0000644000000000000000000000000713415045104017157 
   0ustar0000000000000000conf.py* Connection #0 to host i.storswift.com left intact
-	 
+
+Example: curl --connect-timeout 10 -m 10 -o /dev/null -s -w %{http_code} "http://10.10.88.88:9095/api/v0/file/get?arg=QmZ2MbiCS5y7V5P5HDXus4XXaK7yJCdqWpm5u5XamZzqzL&compress=1"
+
+::
+
+    200
+
+
 ======================
 /api/v0/file/ls
 ======================
@@ -1416,6 +1423,15 @@ On success, the call to this endpoint will return with 200 or the following opti
   
 Example: curl http://i.storswift.com:9195/api/v0/files/cp?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&source=/ipfs/QmcFUHo1DBpydnTSeuXszKgQqnXQCJq6Wu1BUdzEfuRahM&dest=/002
 
+.. code-block:: json
+
+    []
+
+Example: curl --connect-timeout 10 -m 10 -o /dev/null -s -w %{http_code} "http://10.10.88.88:9095/api/v0/files/cp?uid=uid-e5aa1bbf-0e37-4f45-a3e3-59bd3554521e&source=/&dest=/WzLhzhvT"
+
+::
+
+    200
 
 
 ======================
@@ -1470,7 +1486,11 @@ On success, the call to this endpoint will return with 200 or the following opti
     "Message": "<string>"
   }
 
-.. http://i.storswift.com:9195/api/v0/files/flush?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&path=/001
+Example: curl http://i.storswift.com:9195/api/v0/files/flush?uid=uid-6f243b6f-ab49-4b53-8d87-c411702d0754&path=/001
+
+::
+
+    200
 
 ======================
 /api/v0/files/ls
@@ -1618,7 +1638,21 @@ Example curl http://10.10.165.11:9095/api/v0/files/mkdir?arg=/suxx
 	"Message": "error reading request: /api/v0/files/mkdir?arg=/suxx"
   }
 
-  
+Example: curl --connect-timeout 10 -m 10 -o /dev/null -s -w %{http_code} "http://10.10.88.88:9095/api/v0/files/mkdir?uid=48905246768"
+
+::
+
+    200
+
+Example: curl --connect-timeout 10 -m 10 -o /dev/null -s -w %{http_code} "http://10.10.88.88:9095/api/v0/files/mkdir?uid=48905246768"
+
+.. code-block:: json
+
+    {
+      "Message": "IPFS unsuccessful: 500: file already exists"
+    }
+
+
 ======================
 /api/v0/files/mv
 ======================
@@ -1748,6 +1782,13 @@ On success, the call to this endpoint will return with 200 or the following opti
     "Message": "<string>"
   }
 
+Example: curl --connect-timeout 10 -m 10 -o /dev/null -s -w %{http_code} "http://10.10.88.88:9095/api/v0/files/read?path=/nE4HT6XI&uid=uid-85b66c45-34af-4914-8084-5e296d3ac4ff"
+
+::
+
+    200
+
+
 ======================
 /api/v0/files/rm
 ======================
@@ -1803,6 +1844,13 @@ On success, the call to this endpoint will return with 200 or the following opti
   {
     "Message": "<string>"
   }
+
+Example: curl --connect-timeout 10 -m 10 -o /dev/null -s -w %{http_code} "http://10.10.88.88:9095/api/v0/files/rm?path=/BI9qjhul&uid=uid-472ecd0e-cf11-482a-aaea-66c2c883e550"
+
+::
+
+    200
+
 
 ======================
 /api/v0/files/stat
@@ -1960,7 +2008,44 @@ On success, the call to this endpoint will return with 200 or the following opti
     "Message": "<string>"
   }
 
-  
+Example: curl http://10.10.88.88:9095/api/v0/files/write?create=true&path=/HGjZpvvO&uid=uid-6e461d9e-3880-4ebb-8b10-d71c6b526485& offset=0
+
+.. code-block:: json
+
+    {
+      "Message": "request Content-Type isn't multipart/form-data"
+    }
+
+Example: curl --connect-timeout 10 -m 10 -v -F file=@HGjZpvvO "http://10.10.88.88:9095/api/v0/files/write?create=true&path=/HGjZpvvO&uid=uid-6e461d9e-3880-4ebb-8b10-d71c6b526485&
+offset=0"
+
+::
+
+    2019-01-28 14:16:12,295 - root - INFO - *   Trying 10.10.88.88...
+    * TCP_NODELAY set
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+
+                                     Dload  Upload   Total   Spent    Left  Speed
+      0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to 10.10.88.88 (10.10.88.88) port 9095 (#0)
+    > POST /api/v0/files/write?create=true&path=/HGjZpvvO&uid=uid-6e461d9e-3880-4ebb-8b10-d71c6b526485& HTTP/1.1
+    > Host: 10.10.88.88:9095
+    > User-Agent: curl/7.61.1
+    > Accept: */*
+    > Content-Length: 223
+    > Content-Type: multipart/form-data; boundary=------------------------ad8f4d152019ec2c
+    >
+    } [223 bytes data]
+    < HTTP/1.1 200 OK
+    < Access-Control-Expose-Headers: X-Stream-Output, X-Chunked-Output, X-Content-Length
+    < Content-Type: application/json
+    < Server: ipfs-cluster/ipfsproxy/0.8.0+git0581a90b0ece7858198b6fc82a369cd61b65e407
+    < Vary: Origin
+    < Vary: Access-Control-Request-Method
+    < Vary: Access-Control-Request-Headers
+    < Date: Mon, 28 Jan 2019 06:16:11 GMT
+    < Content-Length: 0
+    <
+
   
 ======================
 /api/v0/name/publish
