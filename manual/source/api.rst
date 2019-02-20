@@ -54,7 +54,7 @@ Index
 =======================
 
 * :ref:`/api/v0/uid/new`
-* :ref:`/api/v0/uid/login`
+* :ref:`/api/v0/uid/renew`
 * :ref:`/api/v0/uid/info`
 * :ref:`/api/v0/pin/add`
 * :ref:`/api/v0/pin/ls`
@@ -791,9 +791,10 @@ Example: curl http://10.10.165.11:9095/api/v0/uid/new
 	}
 	
 ======================
-/api/v0/uid/login
+/api/v0/uid/renew
 ======================
-Log in to Hive Cluster using the UID you created earlier.
+Renew the uid that was created earlier.
+After succeeded in renewing action, the OldUID will be removed and the new UID will be used.
 
 .. list-table:: Arguments
  :widths: 15 10 10 30
