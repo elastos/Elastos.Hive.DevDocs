@@ -34,6 +34,14 @@ File API vs Files API:
 - files APIs are used to interact with virtual file system.
 - In files APIs context, it must associate a uid to distinguish different filesystems.
 
+About parameters:
+
+- Type: Json data type only.
+- Required:
+    - yes: permanent
+    - no: optional
+    - Reserved: Reserved for future use
+
 Index
 -----
 
@@ -753,7 +761,7 @@ the PeerID is a virtual IPFS peer ID.
    - Description
 
 :METHOD:
-  GET/POST
+  POST
    
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
@@ -810,7 +818,7 @@ After succeeded in renewing action, the OldUID will be removed and the new UID w
    - The UID you created earlier.
 
 :METHOD:
-  GET/POST   
+  POST   
    
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
@@ -868,7 +876,7 @@ Get the uid information from server.
    - The UID you created earlier.
 
 :METHOD:
-  GET/POST   
+  POST   
    
 .. list-table:: HTTP Response
  :widths: 15 10 10 30
@@ -911,7 +919,7 @@ Example: curl http://127.0.0.1:9095/api/v0/uid/info?uid=uid-5b9745dc-7714-47ff-a
 Pin objects in the cluster
 
 :METHOD:
-  GET/POST
+  POST
 
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -978,7 +986,7 @@ Example:   curl "http://i.storswift.com:9195/api/v0/pin/add?arg=QmYZmegdpcRzVa2J
 List objects that pinned to the cluster.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1052,7 +1060,7 @@ Example: curl "http://i.storswift.com:9195/api/v0/pin/ls"
 Remove pinned objects from the cluster.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1116,7 +1124,7 @@ Example: curl http://i.storswift.com:9195/api/v0/pin/rm?arg=QmYZmegdpcRzVa2JQskN
 Add a file or directory to cluster.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1126,23 +1134,23 @@ Add a file or directory to cluster.
      - Type
      - Required
      - Description
-   * - path
+   * - arg
      - file
      - yes
      - The path to a file to be added to the cluster.
    * - recursive
      - bool
-     - no
+     - no (Reserved)
      - Add directory paths recursively.
        Default: “false”. Required: no.
    * - hidden
      - bool
-     - no
+     - no (Reserved)
      - Include files that are hidden. Only takes effect on recursive add.
        Default: “false”.
    * - pin
      - bool
-     - no
+     - no (Reserved)
      - Pin this object when adding.
        Default: “true”.
 
@@ -1178,7 +1186,7 @@ Add a file or directory to cluster.
       "Size": "<string>"
   }
 
-Example: curl -F file=conf.py "http://i.storswift.com:9195/api/v0/file/add?recursive=true"
+Example: curl -F file=conf.py "http://i.storswift.com:9195/api/v0/file/add?arg=test&recursive=true"
 
 .. code-block:: json
 
@@ -1195,7 +1203,7 @@ Example: curl -F file=conf.py "http://i.storswift.com:9195/api/v0/file/add?recur
 Download files from the hive cluster.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1211,7 +1219,7 @@ Download files from the hive cluster.
      - The path to the file(s) to be download from the cluster.
    * - output
      - string
-     - no
+     - no (Reserved)
      - The path where the output should be stored. Default: the endpoint current directory.
    * - compress
      - bool
@@ -1273,7 +1281,7 @@ Example: curl -v "http://i.storswift.com:9195/api/v0/file/get?arg=QmXbB1Ad9TWt9S
 cat files content from the hive cluster
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1313,7 +1321,7 @@ Example: curl -v "http://i.storswift.com:9195/api/v0/file/cat?arg=QmXbB1Ad9TWt9S
 List directory contents for Unix filesystem objects.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1323,7 +1331,7 @@ List directory contents for Unix filesystem objects.
      - Type
      - Required
      - Description
-   * - path
+   * - arg
      - file
      - yes
      - The path to the IPFS object(s) to list links from.
@@ -1394,7 +1402,7 @@ Example: http://10.10.165.11:9095/api/v0/file/ls?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpK
 Copy files among clusters.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1453,7 +1461,7 @@ On success, the call to this endpoint will return with 200 or the following opti
 Flush a given path’s data to cluster.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1507,7 +1515,7 @@ On success, the call to this endpoint will return with 200 or the following opti
 List directories in the private mutable namespace.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1584,7 +1592,7 @@ Example: curl http://i.storswift.com:9195/api/v0/files/ls?uid=uid-f996965a-f916-
 Create directories.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1645,7 +1653,7 @@ Example curl http://10.10.165.11:9095/api/v0/files/mkdir?arg=/suxx
 Move files.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1701,7 +1709,7 @@ On success, the call to this endpoint will return with 200 or the following opti
 Read a file in a given path.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1760,7 +1768,7 @@ On success, the call to this endpoint will return with 200 or the following opti
 Remove a file.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1816,7 +1824,7 @@ On success, the call to this endpoint will return with 200 or the following opti
 Display file status.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1896,7 +1904,7 @@ Example: curl http://10.10.165.11:9095/api/v0/files/stat?arg=/
 Write to a mutable file in a given filesystem.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
    :widths: 15 10 10 30
@@ -1974,7 +1982,7 @@ On success, the call to this endpoint will return with 200 or the following opti
 Publish user context file or directory to public.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
  :widths: 15 10 10 30
@@ -2038,7 +2046,7 @@ Example: curl http://i.storswift.com:9195/api/v0/name/publish?arg=QmXbB1Ad9TWt9S
 Publish a message to a given pubsub topic.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
  :widths: 15 10 10 30
@@ -2088,7 +2096,7 @@ On success, the call to this endpoint will return with 200 or the following opti
 Subscribe to message to a given topic.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
  :widths: 15 10 10 30
@@ -2151,7 +2159,7 @@ On success, the call to this endpoint will return with 200 and the following bod
 Show cluster version information.
 
 :METHOD:
-  GET/POST
+  POST
   
 .. list-table:: Arguments
  :widths: 15 10 10 30
