@@ -1418,11 +1418,11 @@ Copy files among clusters.
      - a uid for to identify a filesystem context.
    * - source
      - string
-     - no
+     - yes
      - Source object to copy.
    * - dest
      - string
-     - no
+     - yes
      - Destination to copy object to.
 
 .. list-table:: HTTP Response
