@@ -43,7 +43,8 @@ release = u'0.1'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosectionlabel',
-    'jsonlexer'
+    'jsonlexer',
+    'sphinx.ext.graphviz'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

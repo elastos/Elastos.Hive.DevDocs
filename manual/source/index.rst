@@ -16,6 +16,7 @@ Hive Cluster is a decentralized File Storage Service that is based on IPFS clust
 API Reference
 ==================
 * :doc:`Hive Cluster Commands & API <api>`
+* :doc:`Usage sample of the files API <files-sample>`
 
 Deployment
 ===========

@@ -62,6 +62,7 @@ Index
 =======================
 
 * :ref:`/api/v0/uid/new`
+* :ref:`/api/v0/uid/login`
 * :ref:`/api/v0/uid/renew`
 * :ref:`/api/v0/uid/info`
 * :ref:`/api/v0/pin/add`
@@ -797,7 +798,61 @@ Example: curl http://10.10.165.11:9095/api/v0/uid/new
 	  "UID": "uid-ef26d276-48c4-4371-b136-3c06d2d6ebab",
 	  "PeerID": "Qmawxf1opQr1873WwJdxidtpKSffM7R5knZbU9idb8rjEF"
 	}
-	
+
+======================
+/api/v0/uid/login
+======================
+Login a Hive host.
+For existing users, before they use the 'files API', they need to invoke this API. Otherwise, his/her home directory should be scratched state.
+
+.. list-table:: Arguments
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Arguments
+   - Type
+   - Required
+   - Description
+ * - uid
+   - string
+   - yes
+   - The UID that was created earlier.
+ * - hash
+   - string
+   - yes
+   - The hash value of the existing home directory, it is prefixed '/ipfs/...'
+
+:METHOD:
+  POST   
+   
+.. list-table:: HTTP Response
+ :widths: 15 10 10 30
+ :header-rows: 1
+
+ * - Argument
+   - Type
+   - Required
+   - Description
+ * - http error
+   - integer
+   - yes
+   - error code.
+ * - http body
+   - Json
+   - no
+   - Json string is following
+
+On success, the call to this endpoint will return with 200 or the following optional body:
+
+.. code-block:: json
+
+  {
+    "Message": "<string>"
+  }
+
+Example: curl '''http://127.0.0.1:9095/api/v0/uid/login?uid=uid-d0fb2d7d-d22e-4d36-8db0-f007d72d7b68&hash=/ipfs/QmanREuWoDVuHtEgdW44F8ytoP6SDMekCH3afHCiwYEsV8'''
+
+
 ======================
 /api/v0/uid/renew
 ======================
@@ -1186,7 +1241,7 @@ Add a file or directory to cluster.
       "Size": "<string>"
   }
 
-Example: curl -F file=conf.py "http://i.storswift.com:9195/api/v0/file/add?arg=test&recursive=true"
+Example: curl -F file=@conf.py "http://i.storswift.com:9195/api/v0/file/add?arg=test&recursive=true"
 
 .. code-block:: json
 
@@ -1418,11 +1473,11 @@ Copy files among clusters.
      - a uid for to identify a filesystem context.
    * - source
      - string
-     - no
+     - yes
      - Source object to copy.
    * - dest
      - string
-     - no
+     - yes
      - Destination to copy object to.
 
 .. list-table:: HTTP Response
