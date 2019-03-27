@@ -21,3 +21,7 @@ API Reference
 Deployment
 ===========
 * :doc:`Hive Cluster Deployment <deployment>`
+
+Troubleshooting
+==================
+* :doc:`Troubleshooting <troubleshooting>`
