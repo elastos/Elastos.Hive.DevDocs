@@ -53,9 +53,6 @@ Index
 * :ref:`/peers`
 * :ref:`/peers/{peerID}`
 * :ref:`/pins`
-* :ref:`/pins/{cid}/sync`
-* :ref:`/pins/{cid}/recover`
-* :ref:`/pins/recover`
 
 =======================
 `Node APIs`
@@ -63,8 +60,6 @@ Index
 
 * :ref:`/api/v0/uid/new`
 * :ref:`/api/v0/uid/login`
-* :ref:`/api/v0/uid/renew`
-* :ref:`/api/v0/uid/info`
 * :ref:`/api/v0/pin/add`
 * :ref:`/api/v0/pin/ls`
 * :ref:`/api/v0/pin/rm`
@@ -81,7 +76,6 @@ Index
 * :ref:`/api/v0/files/rm`
 * :ref:`/api/v0/files/stat`
 * :ref:`/api/v0/files/write`
-* :ref:`/api/v0/name/publish`
 * :ref:`/api/v0/message/pub`
 * :ref:`/api/v0/message/sub`
 * :ref:`/version`
@@ -462,295 +456,11 @@ Example: curl http://10.10.165.11:9094/pins
 	  }
 	]
 
-
-=================
-/pins/{CID}/sync
-=================
-Sync local status from IPFS
-
-:METHOD: 
-  POST
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - arg
-     - string
-     - no
-     - the object CID that need sync.
-     
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-On success, the call to this endpoint will return with 200.
-
-.. code-block:: json
-
-	[
-	  {
-		"Cid": "<string>",
-		"peer_map":
-		{
-		  "Peer ID String"
-          {
-			"cid": "<string>",
-			"peer": "<string>",
-			"peername": "<string>",
-			"status": "<string>",
-			"timestamp": "<string>",
-			"error": "<string>"
-		  }
-	    }
-      }
-	]
-
-Example: curl -X POST  http://10.10.165.11:9094/pins/QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF/sync
-
-.. code-block:: json
-
-	{
-	  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-	  "peer_map": {
-		"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": 
-		{
-		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-		  "peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-		  "peername": "localhost.localdomain",
-		  "status": "pinned",
-		  "timestamp": "2019-01-07T07:46:34Z",
-		  "error": ""
-		},
-		"QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn": 
-		{
-		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-		  "peer": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
-		  "peername": "localhost.localdomain",
-		  "status": "pinned",
-		  "timestamp": "2019-01-08T06:46:59Z",
-		  "error": ""
-		}
-	  }
-	}
-	
-
-====================
-/pins/{cid}/recover
-====================
-Recover a CID
-
-:METHOD:
-  POST
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - cid
-     - string
-     - no
-     - the object CID that need sync.
-
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-On success, the call to this endpoint will return with 200.
-
-.. code-block:: json
-
-	[
-	  {
-		"Cid": "<string>",
-		"peer_map":
-		{
-		  "Peer ID String"
-		  {
-			"cid": "<string>",
-			"peer": "<string>",
-			"peername": "<string>",
-			"status": "<string>",
-			"timestamp": "<string>",
-			"error": "<string>"
-		  }
-		}
-	  } 
-	]
-  
-Example: curl -X POST http://10.10.165.11:9094/pins/QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF/recover
-
-.. code-block:: json
-
-	{
-	  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-	  "peer_map": {
-		"QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
-		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-		  "peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-		  "peername": "localhost.localdomain",
-		  "status": "pinned",
-		  "timestamp": "2019-01-07T07:46:34Z",
-		  "error": ""
-		},
-		"QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn": {
-		  "cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-		  "peer": "QmW8vdqrNj86rbW6RnWTUnFFD1XcHrUws3rv4GGbiNR7cn",
-		  "peername": "localhost.localdomain",
-		  "status": "pinned",
-		  "timestamp": "2019-01-08T06:46:59Z",
-		  "error": ""
-		}
-	  }
-	}
-  
-  
-================
-/pins/recover
-================
-Attempt to re-pin/unpin CIDs in error state
-
-:METHOD: 
-  POST
-
-.. list-table:: Arguments
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Arguments
-     - Type
-     - Required
-     - Description
-   * - arg
-     - string
-     - no
-     - the object CID that need sync.
-   * - local
-     - bool
-     - no
-     - sync
-
-.. list-table:: HTTP Response
-   :widths: 15 10 10 30
-   :header-rows: 1
-
-   * - Argument
-     - Type
-     - Required
-     - Description
-   * - http error
-     - integer
-     - yes
-     - error code.
-   * - http body
-     - Json
-     - no
-     - Json string is following
-
-On success, the call to this endpoint will return with 200.
-
-.. code-block:: json
-
-	[
-	  {
-		"Cid": "<string>",
-		"peer_map":
-		{
-          "Peer ID String"
-          {
-			"cid": "<string>",
-			"peer": "<string>",
-			"peername": "<string>",
-			"status": "<string>",
-			"timestamp": "<string>",
-			"error": "<string>"
-		  }
-		}
-	  }
-	]
-
-Example: curl -X POST http://10.10.165.11:9094/pins/recover?local=true
-
-.. code-block:: json
-
-	[
-	  {
-		"cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-		"peer_map": {
-		  "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
-			"cid": "QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF",
-			"peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-			"peername": "localhost.localdomain",
-			"status": "pinned",
-			"timestamp": "2019-01-07T07:46:34Z",
-			"error": ""
-		  }
-		}
-	  },
-	  {
-		"cid": "QmULKig5Fxrs2sC4qt9nNduucXfb92AFYQ6Hi3YRqDmrYC",
-		"peer_map": {
-		  "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ": {
-			"cid": "QmULKig5Fxrs2sC4qt9nNduucXfb92AFYQ6Hi3YRqDmrYC",
-			"peer": "QmSSwDPUL18NE6VYibm4nXfEZRxSZwV9xGDtEKRagnkWUQ",
-			"peername": "localhost.localdomain",
-			"status": "pinned",
-			"timestamp": "2019-01-08T07:16:31Z",
-			"error": ""
-		  }
-		}
-	  }
-	]
-	
-Example without local=true : curl -X POST http://10.10.165.11:9094/pins/recover
-
-.. code-block:: json
-
-	{
-	  "code": 400,
-	  "message": "only requests with parameter local=true are supported"
-	}	
-
-
 ======================
 /api/v0/uid/new
 ======================
 Create a unique UID and peer ID pair from Hive cluster. The UID can be used to identify endpoints in communication，
-the PeerID is a virtual IPFS peer ID.
+the PeerID is a virtual IPFS peer ID. you can set UID by uid args, if not generator by Hive cluster
 
 .. list-table:: Arguments
  :widths: 15 10 10 30
@@ -790,7 +500,7 @@ On success, the call to this endpoint will return with 200 and the following bod
         "PeerID": "<string>"
     }
 
-Example: curl http://10.10.165.11:9095/api/v0/uid/new
+Example: curl http://10.10.165.11:9095/api/v0/uid/new?uid=uid-ef26d276-48c4-4371-b136-3c06d2d6ebab
 
 .. code-block:: json
 
@@ -852,121 +562,6 @@ On success, the call to this endpoint will return with 200 or the following opti
 
 Example: curl '''http://127.0.0.1:9095/api/v0/uid/login?uid=uid-d0fb2d7d-d22e-4d36-8db0-f007d72d7b68&hash=/ipfs/QmanREuWoDVuHtEgdW44F8ytoP6SDMekCH3afHCiwYEsV8'''
 
-
-======================
-/api/v0/uid/renew
-======================
-Renew the uid that was created earlier.
-After succeeded in renewing action, the OldUID will be removed and the new UID will be used.
-
-.. list-table:: Arguments
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Arguments
-   - Type
-   - Required
-   - Description
- * - uid
-   - string
-   - yes
-   - The UID you created earlier.
-
-:METHOD:
-  POST   
-   
-.. list-table:: HTTP Response
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Argument
-   - Type
-   - Required
-   - Description
- * - http error
-   - integer
-   - yes
-   - error code.
- * - http body
-   - Json
-   - no
-   - Json string is following
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
-    {
-      "UID": "<string>",
-      "OldUID": "<string>",
-      "PeerID": "<string>"
-    }
-
-Example: curl http://127.0.0.1:9095/api/v0/uid/login?uid=uid-b7edf82e-dd51-4adc-9def-8eb06f81630b
-
-.. code-block:: json
-
-	{
-	  "OldUID": "uid-b7edf82e-dd51-4adc-9def-8eb06f81630b",
-	  "UID": "uid-1c4f7ca3-b77f-42e7-82c7-2a8fdf017623",
-	  "PeerID": "QmYf9Q1SBnuzUYphpn6Bs1Zom3uz3qc12MinHseE3MyX9R"
-	}
-
-======================
-/api/v0/uid/info
-======================
-Get the uid information from server.
-
-.. list-table:: Arguments
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Arguments
-   - Type
-   - Required
-   - Description
- * - uid
-   - string
-   - yes
-   - The UID you created earlier.
-
-:METHOD:
-  POST   
-   
-.. list-table:: HTTP Response
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Argument
-   - Type
-   - Required
-   - Description
- * - http error
-   - integer
-   - yes
-   - error code.
- * - http body
-   - Json
-   - no
-   - Json string is following
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
-    {
-      "UID": "<string>",
-      "PeerID": "<string>"
-    }
-
-Example: curl http://127.0.0.1:9095/api/v0/uid/info?uid=uid-5b9745dc-7714-47ff-aa6c-4e817a39cfa6
-
-.. code-block:: json
-
-    {
-      "UID":"uid-5b9745dc-7714-47ff-aa6c-4e817a39cfa6",
-      "PeerID":"QmdSBdjRoJY7YQDWkT2XTYDToswcr8LHz1TfLpXVYhUiZK"
-    }
 
 ====================
 /api/v0/pin/add
@@ -2031,70 +1626,7 @@ On success, the call to this endpoint will return with 200 or the following opti
 
   
   
-======================
-/api/v0/name/publish
-======================
-Publish user context file or directory to public.
-
-:METHOD:
-  POST
-  
-.. list-table:: Arguments
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Arguments
-   - Type
-   - Required
-   - Description
- * - uid
-   - string
-   - yes
-   - a uid for to identify a filesystem context.
- * - lifetime
-   - string
-   - no
-   - Time duration that the record will be valid for. This accepts durations such as “300s”, “1.5h” or “2h45m”. Valid time units are “ns”, “us” (or “µs”), “ms”, “s”, “m”, “h”. Default: “24h”. Required: no.
- * - path
-   - string
-   - yes
-   - the file object(IPFS path) to be published.
- 
-.. list-table:: HTTP Response
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Argument
-   - Type
-   - Required
-   - Description
- * - http error
-   - integer
-   - yes
-   - error code.
- * - http body
-   - Json
-   - no
-   - Json string is following
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
-    {
-        "Name": "<string>"
-        "Value": "<string>"
-    }
-
-Example: curl http://i.storswift.com:9195/api/v0/name/publish?arg=QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF
-
-.. code-block:: json
-
-	{
-	  "Name": "QmdFxnZoS84UvUCiWmGX8ynvJ31iSHQgibKtb9ob6oZeoG",
-	  "Value": "/ipfs/QmXbB1Ad9TWt9SqcyiG6iAW6SpKxvupv1YaUPNFyDYRPxF"
-	}
-    
+   
 ======================
 /api/v0/message/pub
 ======================

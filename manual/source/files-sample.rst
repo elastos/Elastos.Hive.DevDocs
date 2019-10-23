@@ -73,7 +73,7 @@ sample for new user
 .. code-block:: bash
 
    ## generate a new uid
-   $ curl http://HOST:9095/api/v0/uid/new
+   $ curl http://HOST:9095/api/v0/uid/new?uid=uid-ef26d276-48c4-4371-b136-3c06d2d6ebab
    {
 	  "UID": "uid-ef26d276-48c4-4371-b136-3c06d2d6ebab",
 	  "PeerID": "Qmawxf1opQr1873WwJdxidtpKSffM7R5knZbU9idb8rjEF"
