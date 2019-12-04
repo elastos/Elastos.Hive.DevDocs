@@ -527,7 +527,7 @@ For existing users, before they use the 'files API', they need to invoke this AP
    - The UID that was created earlier.
  * - hash
    - string
-   - yes
+   - no
    - The hash value of the existing home directory, it is prefixed '/ipfs/...'
 
 :METHOD:
@@ -558,7 +558,7 @@ On success, the call to this endpoint will return with 200 or the following opti
     "Message": "<string>"
   }
 
-Example: curl '''http://127.0.0.1:9095/api/v0/uid/login?uid=uid-d0fb2d7d-d22e-4d36-8db0-f007d72d7b68&hash=/ipfs/QmanREuWoDVuHtEgdW44F8ytoP6SDMekCH3afHCiwYEsV8'''
+Example: curl '''http://127.0.0.1:9095/api/v0/uid/login?uid=uid-d0fb2d7d-d22e-4d36-8db0-f007d72d7b68'''
 
 
 ====================
