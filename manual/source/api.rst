@@ -76,8 +76,6 @@ Index
 * :ref:`/api/v0/files/rm`
 * :ref:`/api/v0/files/stat`
 * :ref:`/api/v0/files/write`
-* :ref:`/api/v0/message/pub`
-* :ref:`/api/v0/message/sub`
 * :ref:`/version`
 
 Cluster Server Managment
@@ -1624,120 +1622,6 @@ On success, the call to this endpoint will return with 200 or the following opti
     "Message": "<string>"
   }
 
-  
-  
-   
-======================
-/api/v0/message/pub
-======================
-Publish a message to a given pubsub topic.
-
-:METHOD:
-  POST
-  
-.. list-table:: Arguments
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Arguments
-   - Type
-   - Required
-   - Description
- * - topic
-   - string
-   - yes
-   - name of topic to publish.
- * - message
-   - string
-   - yes
-   - message or file hash .
-
-.. list-table:: HTTP Response
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Argument
-   - Type
-   - Required
-   - Description
- * - http error
-   - integer
-   - yes
-   - error code.
- * - http body
-   - Json
-   - no
-   - Json string is following
-
-On success, the call to this endpoint will return with 200 or the following optional body:
-
-.. code-block:: json
-
-  {
-    "Message": "<string>"
-  }
-
-======================
-/api/v0/message/sub
-======================
-Subscribe to message to a given topic.
-
-:METHOD:
-  POST
-  
-.. list-table:: Arguments
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Arguments
-   - Type
-   - Required
-   - Description
- * - topic
-   - string
-   - yes
-   - name of topic to be subscribed.
-
-.. list-table:: HTTP Response
- :widths: 15 10 10 30
- :header-rows: 1
-
- * - Argument
-   - Type
-   - Required
-   - Description
- * - http error
-   - integer
-   - yes
-   - error code.
- * - http body
-   - Json
-   - no
-   - Json string is following
-
-On success, the call to this endpoint will return with 200 and the following body:
-
-.. code-block:: json
-
-    {
-      "Message": {
-        "From": [
-          "<uint8>"
-        ],
-        "Data": [
-          "<uint8>"
-        ],
-        "Seqno": [
-          "<uint8>"
-        ],
-        "TopicIDs": [
-          "<string>"
-        ],
-        "XXX_unrecognized": [
-          "<uint8>"
-        ]
-      }
-    }
 
 =================
 /version
